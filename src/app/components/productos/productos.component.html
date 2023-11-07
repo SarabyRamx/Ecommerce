@@ -1,8 +1,8 @@
 <div class="body">
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!--SE AGREGA EL HEADER-->
+    SE AGREGA EL HEADER-->
     <div class="header_component">
         <app-header></app-header>
       </div>
@@ -76,6 +76,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of productData">
+                                   <!-- <td>{{Imagen}}</td>-->
                                     <td>{{ product.nombre }}</td>
                                     <td>$ {{ product.precio }}</td>
                                     <td style="width: 260px;">

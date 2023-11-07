@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { ProductService } from '../../servicios/producto.service';
 
 
-
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -36,3 +35,11 @@ export class ProductosComponent implements OnInit {
 
   // Resto del código
 }
+// Agragado de la imagen
+@Component({
+  selector: 'app-my-component',
+  template: `
+    <img src="assets/myimage.jpg" alt="Mi Imagen">
+  `,
+})
+export class MyComponent {}
