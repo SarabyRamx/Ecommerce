@@ -23,7 +23,7 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  agregarAlCarrito(producto: any): void {
+ /* agregarAlCarrito(producto: any): void {
     this.cartService.addToCart(producto.id, 1).subscribe((response) => {
       if (response.status === "success") {
         console.log("entro aquí");
@@ -33,5 +33,5 @@ export class ProductosComponent implements OnInit {
         console.error('Error al agregar el producto al carrito', response.message);
       }
     });
-  }
+  }*/
   }
