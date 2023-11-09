@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ProductService } from '../../servicios/producto.service';
 
 
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -43,3 +44,12 @@ export class ProductosComponent implements OnInit {
   `,
 })
 export class MyComponent {}
+
+// Imagenes
+export class ProductListComponent {
+  products = [
+    { id: 1, name: 'proteina', imageUrl: '../assets/img/proteina.jpg' },
+    { id: 2, name: 'powerade', imageUrl: 'src/assets/img/powerade.jpg' },
+    // Agrega más productos según sea necesario
+  ];
+}0
