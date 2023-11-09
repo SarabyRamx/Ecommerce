@@ -43,8 +43,7 @@
                                     <td>{{ product.nombre }}</td>
                                     <td>$ {{ product.precio }}</td>
                                     <td style="width: 260px;">
-                                        <a *ngIf="product.agregado" href="/carrito" class="btn btn-info">Agregado</a>
-                                        <button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(product.id)">Agregar al carrito</button>
+                                       <!--<button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(product.id)">Agregar al carrito</button>-->
                                     </td>
                                 </tr>
                             </tbody>
