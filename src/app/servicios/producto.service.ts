@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost/Ecommerce/Productos.php'; 
+  private apiUrl = 'https://olympus.arvispace.com/Products/products.php'; 
 
   constructor(private http: HttpClient) { }
 

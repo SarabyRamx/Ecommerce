@@ -39,11 +39,11 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of productData">
-                                    <td><img href="../../../assets/img/cuerda.jpg" alt="{{ product.name }} Image"></td>
-                                    <td>{{ product.nombre }}</td>
-                                    <td>$ {{ product.precio }}</td>
+                                    <td><img src="https://olympus.arvispace.com/assets/img/prods-img/shaker.jpg" alt="{{ product.name }} Image" width="100px"></td>
+                                    <td>{{ product.name }}</td>
+                                    <td>$ {{ product.price }}</td>
                                     <td style="width: 260px;">
-                                       <!--<button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(product.id)">Agregar al carrito</button>-->
+                                        <button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(product.id)">Agregar al carrito</button>
                                     </td>
                                 </tr>
                             </tbody>

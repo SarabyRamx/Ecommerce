@@ -14,16 +14,24 @@ export class ProductosComponent implements OnInit {
   constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((respuesta) => {
-      if (Array.isArray(respuesta)) {
-        this.productData = respuesta;
-      } else {
-        console.error("La respuesta no es un arreglo.");
+    this.productService.getProducts().subscribe(
+      (respuesta) => {
+        if (Array.isArray(respuesta)) {
+          this.productData = respuesta;
+          console.log(this.productData); // Agrega este console.log para verificar los datos
+        } else {
+          console.error("La respuesta no es un arreglo.");
+        }
+      },
+      (error) => {
+        console.log("Error al obtener productos:", error);
       }
-    });
-  }
+    );
 
- /* agregarAlCarrito(producto: any): void {
+  }
+  
+
+ agregarAlCarrito(producto: any): void {
     this.cartService.addToCart(producto.id, 1).subscribe((response) => {
       if (response.status === "success") {
         console.log("entro aquí");
@@ -33,5 +41,5 @@ export class ProductosComponent implements OnInit {
         console.error('Error al agregar el producto al carrito', response.message);
       }
     });
-  }*/
+  }
   }
