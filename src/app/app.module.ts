@@ -30,6 +30,7 @@ import { AdmindashboardComponent } from './components/admindashboard/admindashbo
 import { CarritoComponent } from './components/carrito/carrito.component';
 
 
+
 library.add(fab);
 
 
@@ -53,7 +54,8 @@ library.add(fab);
     ReactiveFormsModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
