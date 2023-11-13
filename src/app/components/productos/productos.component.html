@@ -1,66 +1,79 @@
 <div class="body">
-    <!--<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="../../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    SE AGREGA EL HEADER-->
     <div class="header_component">
-        <app-header></app-header>
+      <app-header></app-header>
+    </div>
+
+    <div class="first-content">
+        <div id="search-bar">
+                <button><span class="material-icons">
+                    search
+                    </span></button>
+                <input type="text" name="search" id="search" placeholder="buscar producto" [(ngModel)]="searchText" (input)="realizarBusqueda()">
+        </div>
+        <div class="cantidad-produ">
+            <h2>productos encontrados: {{productData.length}}</h2>
+        </div>
+    </div>
+  
+    <div class="content_page">
+      <div class="margin_page">
+        <div class="grid_padre">
+          <div class="col-md-3">
+            <!-- Barra lateral con filtros -->
+            <div class="sidebar">
+              <h3>Filtros</h3>
+              <label>Categoría:</label>
+              <select>
+                <option>Todas</option>
+                <option>Suplementos</option>
+                <option>Accesorios</option>
+                <option>Bebidas</option>
+                <option>Alimentos</option>
+                <!-- Agrega más opciones según tus necesidades -->
+              </select>
+              <!-- Agrega más filtros si es necesario -->
+            </div>
+          </div>
+  
+          <div class="col-md-9 text-center product" [ngClass]="{'product': aplicarEstilo, 'resize-produ-3': aplicarEstilo}" >
+            <!-- Sección principal de productos -->
+  
+            <div class="productos-grid">
+              <!-- Código de productos -->
+              <div class="producto-card" *ngFor="let product of productosFiltrados let i = index">
+                <img src="{{urlimg + product.imageurl}}" alt="{{ product.name }} Image" width="100px">
+                <h3>{{ product.name }}</h3>
+                <p>Precio: ${{ product.price }}</p>
+                <button mat-raised-button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(i)" >Agregar al carrito</button>
+              </div>
+            </div>
+            <br><br>
+          </div>
+          <div id="cardlist" class="carlist" *ngIf="productos.length > 0">
+            <!-- Código del carrito -->
+            <div class="head-car" [ngClass]="{'product': aplicarEstilo}">
+                <h2>Tu carrito: {{productos.length}}</h2>
+                <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
+            </div>
+            <div *ngFor="let produ of productos; let i = index" class="produ-car">
+            <div class="img-produ-car">
+                <img src="{{urlimg + produ.imageurl}}" alt="">
+            </div>
+              <p>Nombre: {{produ.name}}</p>
+              <p>Precio: ${{produ.cantidad * produ.price}}</p>
+              <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad" value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
+              <button (click)="eliminarProducto(i)">Eliminar</button>
+            </div>
+            <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
+            <button class="vaciar pagarnow">pagar ahora</button>
+            <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
+          </div>
+        </div>
       </div>
-
-      <div class="content_page">
-        <div class="margin_page">
-
-            <div class="content_searchbar" >
-                <mat-form-field appearance="outline" class="inputs_css">
-                    <input type="text" matInput placeholder="Ingresa lo que quieres buscar" autocomplete="off" autofocus="" >
-                    <mat-icon matSuffix>search</mat-icon>
-                </mat-form-field>
-            </div><!--cierra div content search bar-->
-    
-            <div class="grid_padre">
-              
-
-                <!--Inicia container dinámico de productos-->
-                <div class="col-md-11 text-center">
-                    <h1>Productos</h1>
-                    <div class="btn"> <!-- Agrega la clase "mb-3" para agregar margen inferior -->
-                        <button routerLink="/carrito" type="button" class="btn btn-warning">Ver Carrito</button>
-                    </div><br><br>
-
-                    <div class="tabla">
-                        <table class="table table-bordered mx-auto">
-                            <thead>
-                                <tr>
-                                    <th>Imagen</th>
-                                    <th>Producto</th>
-                                    <th>Precio</th>         
-                                    <th></th>                           
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let product of productData">
-                                    <td><img src="https://olympus.arvispace.com/assets/img/prods-img/shaker.jpg" alt="{{ product.name }} Image" width="100px"></td>
-                                    <td>{{ product.name }}</td>
-                                    <td>$ {{ product.price }}</td>
-                                    <td style="width: 260px;">
-                                        <button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(product.id)">Agregar al carrito</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br><br>
-                </div>                
-            <!--Cierra container dinámico de productos-->
-                
-                  
-            </div><!--cierre div grid padre-->
-        </div><!--cierra div margin page-->
-      </div><!--cierra div content page-->
-
-
-    <!--SE AGREGA EL FOOTER-->
-    <div class="footer_component">
-        <app-footer></app-footer>
-      </div>
-</div><!--cierra contenedor body-->
+    </div>
+  
+    <!--<div class="footer_component">
+      <app-footer></app-footer>
+    </div>-->
+  </div>
+  
