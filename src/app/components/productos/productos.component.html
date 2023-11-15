@@ -11,7 +11,7 @@
                 <input type="text" name="search" id="search" placeholder="buscar producto" [(ngModel)]="searchText" (input)="realizarBusqueda()">
         </div>
         <div class="cantidad-produ">
-            <h2>productos encontrados: {{productData.length}}</h2>
+            <h2>productos encontrados: {{productosFiltrados.length}}</h2>
         </div>
     </div>
   
@@ -32,6 +32,16 @@
                 <!-- Agrega más opciones según tus necesidades -->
               </select>
               <!-- Agrega más filtros si es necesario -->
+              <div class="price_filter_container">
+              <h3 class="precio_range">
+                Precio
+              </h3>
+              <span (click)="getPriceProducts()">Hasta $350</span>
+              <span>$350 a $750</span>
+              <span>$750 a $1500</span>
+              <span>$1500 a $3000</span>
+              <span>$3000 y mas</span>
+            </div>
             </div>
           </div>
   

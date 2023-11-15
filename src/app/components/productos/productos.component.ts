@@ -18,8 +18,9 @@ export class ProductosComponent implements OnInit {
   urlimg = "https://olympus.arvispace.com/assets/img/prods-img/";
   searchText: string = '';
   productosFiltrados: any[] = [];
+  priceFilterProducts: any[] = [];
 
-  constructor(private productService: ProductService, private cartService: CartService, public r: Renderer2) {}
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
@@ -100,5 +101,25 @@ export class ProductosComponent implements OnInit {
       // Si no hay texto de búsqueda, muestra todos los productos
       this.productosFiltrados = this.productData;
     }
+  }
+
+  /*FILTROS DE PRODUCTOS*/
+  getPriceProducts() {
+    console.log("me estan oprimiendo");
+    for(let i = 0; i < this.productosFiltrados.length; i++) {
+      if(this.productosFiltrados[i].price <= 350) {
+        this.priceFilterProducts.push(this.productosFiltrados[i]);
+      }
+    }
+    if(this.priceFilterProducts.length > 0){
+      console.log("esto es lo que muestra la pantalla de inicio: ",this.productData);
+      console.log("estos son los productos: ",this.priceFilterProducts);
+      console.log("el ultimo elemento es: ", this.priceFilterProducts[this.priceFilterProducts.length - 1]);
+      this.productosFiltrados = this.priceFilterProducts;
+      this.productData = this.priceFilterProducts;
+    }else {
+      console.log("el arreglo esta vacio");
+    }
+    return this.priceFilterProducts;
   }
 }

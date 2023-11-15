@@ -21,7 +21,6 @@
     background-color: #F9A640;
     padding: 15px;
     border-radius: 8px;
-    height: 250px;
   }
 
   .sidebar h3 {
@@ -202,4 +201,20 @@
 
 .carlist .pagarnow {
     background-color: #F9A640;
+}
+
+.price_filter_container {
+  margin-top: 40px;
+}
+
+.price_filter_container span {
+  display: block;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: auto;
+}
+
+.price_filter_container span:hover {
+  color: #ffffff;
+  cursor: pointer;
 }
