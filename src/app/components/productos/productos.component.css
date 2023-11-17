@@ -43,6 +43,35 @@
     border-left: 1px solid #ccc;
   }
 
+  .not-found {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .not-found div {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .not-found div img {
+    display: block;
+    width: 250px;
+    height: 200px;
+  }
+
+  .not-found p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    color: #333333;
+  }
+
   .productos-grid button {
     background-color: #F9A640;
     border: none;

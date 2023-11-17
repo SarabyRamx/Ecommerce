@@ -36,19 +36,25 @@
               <h3 class="precio_range">
                 Precio
               </h3>
-              <span (click)="getPriceProducts()">Hasta $350</span>
-              <span>$350 a $750</span>
+              <span *ngFor="let filter of filtersPrice; let i = index" (click)="getPriceProducts(i)">{{filter}}</span>
+              <!--<span>$350 a $750</span>
               <span>$750 a $1500</span>
               <span>$1500 a $3000</span>
-              <span>$3000 y mas</span>
+              <span>$3000 y mas</span>-->
             </div>
             </div>
           </div>
   
           <div class="col-md-9 text-center product" [ngClass]="{'product': aplicarEstilo, 'resize-produ-3': aplicarEstilo}" >
             <!-- Sección principal de productos -->
-  
+            <div class="not-found" *ngIf="productosFiltrados.length == 0">
+              <div>
+                <img src="assets/img/Product-Not-Found.jpg" alt="">
+                <p>No se encontraron productos</p>
+              </div>
+            </div>
             <div class="productos-grid">
+              
               <!-- Código de productos -->
               <div class="producto-card" *ngFor="let product of productosFiltrados let i = index">
                 <img src="{{urlimg + product.imageurl}}" alt="{{ product.name }} Image" width="100px">

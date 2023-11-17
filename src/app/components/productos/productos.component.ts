@@ -19,6 +19,7 @@ export class ProductosComponent implements OnInit {
   searchText: string = '';
   productosFiltrados: any[] = [];
   priceFilterProducts: any[] = [];
+  filtersPrice = ["Hasta $350", "$350 a $750", "$750 a $1500", "$1500 a $3000", "$3000 y mas"];
 
   constructor(private productService: ProductService, private cartService: CartService) {}
 
@@ -38,7 +39,7 @@ export class ProductosComponent implements OnInit {
     );
   }
 
-  agregarAlCarrito(index: number): void {
+  /*agregarAlCarrito(index: number): void {
     const productoExistente = this.productos.find(p => p.id === this.productData[index].id);
 
     if (productoExistente) {
@@ -55,7 +56,27 @@ export class ProductosComponent implements OnInit {
 
     this.actualizarSubtotal();
     this.aplicarEstilo = true;
+  }*/
+  agregarAlCarrito(index: number): void {
+    const productoExistente = this.productos.find(p => p.id === this.productosFiltrados[index].id);
+  
+    if (productoExistente) {
+      productoExistente.cantidad++;
+    } else {
+      this.productos.push({
+        id: this.productosFiltrados[index].id,
+        name: this.productosFiltrados[index].name,
+        price: this.productosFiltrados[index].price,
+        imageurl: this.productosFiltrados[index].imageurl,
+        cantidad: 1
+      });
+    }
+  
+    this.actualizarSubtotal();
+    this.aplicarEstilo = true;
   }
+  
+
 
   actualizarCantidad(index: number): void {
     this.actualizarSubtotal();
@@ -104,22 +125,46 @@ export class ProductosComponent implements OnInit {
   }
 
   /*FILTROS DE PRODUCTOS*/
-  getPriceProducts() {
-    console.log("me estan oprimiendo");
-    for(let i = 0; i < this.productosFiltrados.length; i++) {
-      if(this.productosFiltrados[i].price <= 350) {
-        this.priceFilterProducts.push(this.productosFiltrados[i]);
-      }
+  getPriceProducts(index: number) {
+    console.log("Estos son todos los productos: ", this.productosFiltrados);
+    const selectedFilter = this.filtersPrice[index];
+    console.log("Me están oprimiendo, soy: ", selectedFilter);
+
+    // Limpia el arreglo antes de cada nueva operación
+    this.priceFilterProducts = [];
+
+    // Copiar los productos filtrados previos
+    this.productosFiltrados = [...this.productData];
+
+    if (this.productosFiltrados.length > 0) {
+        if (selectedFilter === this.filtersPrice[0]) {
+            this.priceFilterProducts = this.productosFiltrados.filter(producto => parseInt(producto.price) <= 350);
+        } else if (selectedFilter === this.filtersPrice[1]) {
+            this.priceFilterProducts = this.productosFiltrados.filter(producto => {
+                const precio = parseInt(producto.price);
+                return precio >= 350 && precio <= 750;
+            });
+        } else if(selectedFilter === this.filtersPrice[2]) {
+          this.priceFilterProducts = this.productosFiltrados.filter(producto => {
+            const precio = parseInt(producto.price);
+            return precio >= 750 && precio <= 1500;
+        });
+        }
+    } else {
+        console.log("No hay productos disponibles :(");
     }
-    if(this.priceFilterProducts.length > 0){
-      console.log("esto es lo que muestra la pantalla de inicio: ",this.productData);
-      console.log("estos son los productos: ",this.priceFilterProducts);
-      console.log("el ultimo elemento es: ", this.priceFilterProducts[this.priceFilterProducts.length - 1]);
-      this.productosFiltrados = this.priceFilterProducts;
-      this.productData = this.priceFilterProducts;
-    }else {
-      console.log("el arreglo esta vacio");
+
+    if (this.priceFilterProducts.length > 0) {
+        console.log("Estos son los productos: ", this.priceFilterProducts);
+    } else {
+        console.log("El arreglo está vacío");
     }
+
+    // Actualiza los productos filtrados
+    this.productosFiltrados = this.priceFilterProducts;
+    
     return this.priceFilterProducts;
-  }
+}
+
+
 }
