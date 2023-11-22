@@ -8,20 +8,21 @@
   }
   
   .col-md-3 {
-    width: 20%;
-    padding: 20px;
+    width: 15%;
+    padding: 5px;
   }
   
   .col-md-9 {
-    width: 80%;
+    width: 85%;
     padding: 20px;
+    box-sizing: border-box;
   }
   
   .sidebar {
+    width: 100%;
     background-color: #F9A640;
     padding: 15px;
     border-radius: 8px;
-    height: 250px;
   }
 
   .sidebar h3 {
@@ -39,9 +40,38 @@
   
   .productos-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     border-left: 1px solid #ccc;
+  }
+
+  .not-found {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .not-found div {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .not-found div img {
+    display: block;
+    width: 250px;
+    height: 200px;
+  }
+
+  .not-found p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    color: #333333;
   }
 
   .productos-grid button {
@@ -53,15 +83,46 @@
     padding: 20px;
     text-align: center;
     border: 1px solid #eee;
+    height: 450px;
+    box-sizing: border-box;
   }
   
   .producto-card img {
     max-width: 100%;
-    height: auto;
+    height: 50%;
   }
 
+  .producto-card h3 {
+    padding-top: 15%;
+  }
+
+  .producto-card p {
+    margin-bottom: 5%;
+  }
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cart {
+    border: none;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    width: 80px;
+    height: 81px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .cart span {
+    color: #000;
+  }
   
-  
+
   #search-bar {
     width: 100%;
     height: 80px;
@@ -116,11 +177,11 @@
   
 .carlist {
     background-color: #f4f4f4;
-    width: 20%;
+    width: 15%;
 }
 
 .product {
-    width: 60%;
+    width: 70%;
 }
 
 .head-car {
@@ -140,6 +201,28 @@
     box-shadow: 3px 3px 15px #eee;
 }
 
+.producto-card .oferta {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.producto-card .old_price {
+  text-decoration: line-through rgb(255, 0, 0);
+  text-decoration-thickness: 2px;
+  color: #8b8888;
+}
+
+.producto-card .new_price {
+  font-weight: 600;
+}
+
 
 .produ-car {
     width: 90%;
@@ -151,14 +234,16 @@
     border-radius: 15px;
     margin-bottom: 10px;
     padding-block: 20px;
+    box-sizing: border-box;
 }
 
 .produ-car .img-produ-car {
-    width: 40%;
+    width: 70%;
 }
 
 .img-produ-car img {
     width: 100%;
+    height: 100%;
 }
 
 .produ-car input {
@@ -202,4 +287,24 @@
 
 .carlist .pagarnow {
     background-color: #F9A640;
+}
+
+.price_filter_container {
+  margin-top: 40px;
+}
+
+.price_filter_container span {
+  display: block;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: auto;
+}
+
+.price_filter_container span:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.seleccionado {
+  color: #ffffff;
 }
