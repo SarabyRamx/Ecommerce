@@ -6,12 +6,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'https://olympus.arvispace.com/Products/products.php'; 
+  private apiUrl = 'https://olympus.arvispace.com/Products/products2.php'; 
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<any[]> {
+  /*getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
+  }
+
+  getCategory(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }*/
+
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?action=getProducts`);
+  }
+
+  getCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?action=getCategories`);
   }
   
 }

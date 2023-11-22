@@ -4,12 +4,17 @@
     </div>
 
     <div class="first-content">
+      <div class="center-container">
         <div id="search-bar">
                 <button><span class="material-icons">
                     search
                     </span></button>
                 <input type="text" name="search" id="search" placeholder="buscar producto" [(ngModel)]="searchText" (input)="realizarBusqueda()">
         </div>
+        <button *ngIf="productos.length > 0" (click)="openCar()" class="cart"><span class="material-icons">
+          shopping_cart
+          </span>{{productos.length}}</button>
+      </div>
         <div class="cantidad-produ">
             <h2>productos encontrados: {{productosFiltrados.length}}</h2>
         </div>
@@ -23,12 +28,8 @@
             <div class="sidebar">
               <h3>Filtros</h3>
               <label>Categoría:</label>
-              <select>
-                <option>Todas</option>
-                <option>Suplementos</option>
-                <option>Accesorios</option>
-                <option>Bebidas</option>
-                <option>Alimentos</option>
+              <select (change)="filtrarPorCategoria()" [(ngModel)]="categoriaSeleccionada">
+                <option *ngFor="let categorias of categoriaFilter">{{categorias.Nombre}}</option>
                 <!-- Agrega más opciones según tus necesidades -->
               </select>
               <!-- Agrega más filtros si es necesario -->
@@ -36,11 +37,7 @@
               <h3 class="precio_range">
                 Precio
               </h3>
-              <span *ngFor="let filter of filtersPrice; let i = index" (click)="getPriceProducts(i)">{{filter}}</span>
-              <!--<span>$350 a $750</span>
-              <span>$750 a $1500</span>
-              <span>$1500 a $3000</span>
-              <span>$3000 y mas</span>-->
+              <span *ngFor="let filter of filtersPrice; let i = index" (click)="getPriceProducts(i)" [class.seleccionado]="filtroSeleccionado === i">{{filter}}</span>
             </div>
             </div>
           </div>
@@ -57,9 +54,12 @@
               
               <!-- Código de productos -->
               <div class="producto-card" *ngFor="let product of productosFiltrados let i = index">
-                <img src="{{urlimg + product.imageurl}}" alt="{{ product.name }} Image" width="100px">
+                <p *ngIf="product.descuento == 1" class = "oferta">-{{product.porcentaje}}%</p>
+                <img src="{{urlimg + product.imageurl}}" alt="{{ product.name }} Image">
                 <h3>{{ product.name }}</h3>
-                <p>Precio: ${{ product.price }}</p>
+                <p *ngIf="product.descuento == 1" class="old_price">anterior: ${{product.price}}</p>
+                <p *ngIf="product.descuento == 1" class="new_price">Precio: ${{product.nuevoprecio}}</p>
+                <p *ngIf="product.descuento == 0">Precio: ${{ product.price }}</p>
                 <button mat-raised-button *ngIf="!product.agregado" class="btn btn-info" (click)="agregarAlCarrito(i)" >Agregar al carrito</button>
               </div>
             </div>
@@ -76,7 +76,9 @@
                 <img src="{{urlimg + produ.imageurl}}" alt="">
             </div>
               <p>Nombre: {{produ.name}}</p>
-              <p>Precio: ${{produ.cantidad * produ.price}}</p>
+              <p>c/u: ${{produ.price}}</p>
+              <p *ngIf="produ.descuento == 1">Precio: ${{produ.cantidad * produ.price}}</p>
+              <p *ngIf="produ.descuento == 0">Precio: ${{produ.cantidad * produ.price}}</p>
               <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad" value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
               <button (click)="eliminarProducto(i)">Eliminar</button>
             </div>
