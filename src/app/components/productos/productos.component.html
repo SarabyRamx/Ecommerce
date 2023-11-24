@@ -83,7 +83,7 @@
               <button (click)="eliminarProducto(i)">Eliminar</button>
             </div>
             <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
-            <button class="vaciar pagarnow">pagar ahora</button>
+            <button (click)="resumenProductos()" class="vaciar pagarnow" routerLink="/resumen">pagar ahora</button>
             <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
           </div>
         </div>
