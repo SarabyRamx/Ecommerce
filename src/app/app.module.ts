@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -55,7 +56,8 @@ library.add(fab);
     MatInputModule,
     BrowserAnimationsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -67,7 +69,6 @@ export class AppModule {
       faGoogle,
       faInstagram,
       faTwitter,
-
       faPaypal,
       faXTwitter,
     );
