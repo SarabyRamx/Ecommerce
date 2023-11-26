@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="main-container">
+    <div class="title">
+        <h1 *ngIf="productosCarri.length > 0">Resumen de tus Productos:</h1>
+        <h1 *ngIf="productosCarri.length == 0">Tu carrito esta vacio :C</h1>
+    </div>
+    <div class="main-content">
+        <div class="products">
+        <div class="your-product" *ngFor="let producto of productosCarri; let idx = index">
+            <div class="image-product">
+                <img src="{{imagesUrl + producto.imageurl}}" alt="" width="100px">
+            </div>
+            <div class="info-product">
+                <div class="main-info"> 
+                <h2>{{producto.name}}</h2>
+                <span><strong>Precio Unitario:</strong>${{producto.price}}</span>
+                <div class="quantity">
+                    <label for="cantidad">cantidad</label>
+                    <input type="number" name="cantidad" id="canti" value="{{producto.cantidad}}" (change)="cantidadProducto($event, idx)">
+                </div>
+                <div class="buttons">
+                    <a (click)="eliminarProducto(idx)">Eliminar</a>
+                    <a>Seguir comprando</a>
+                </div>
+                </div>
+                <div class="price">
+                    <span><strong>${{producto.price * producto.cantidad}}</strong></span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="totalcompra">
+            <span>Total: ${{monto}}</span>
+        </div>
+        </div>
+        <div class="pay-bar-section">
+            <div class="pay-container">
+                <div class="pay-content">
+                    <h3>subtotal({{productosCarri.length}} productos):</h3>
+                    <span>${{monto}}</span>
+                </div>
+                <div class="button-pay" *ngIf="productosCarri.length > 0">
+                    <button mat-raised-button>Proceder al Pago</button>
+                </div>
+            </div>
+            <div class="other-products">
+                
+            </div>
+        </div>
+    </div>
+</div>
+

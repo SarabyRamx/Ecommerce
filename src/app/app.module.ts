@@ -28,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { ResumenproductosComponent } from './components/resumenproductos/resumenproductos.component';
 
 
 
@@ -42,6 +43,7 @@ library.add(fab);
     FooterComponent,
     AdmindashboardComponent,
     CarritoComponent,
+    ResumenproductosComponent,
   ],
   imports: [
     BrowserModule,

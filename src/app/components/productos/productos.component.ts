@@ -299,4 +299,10 @@ filtrarPorCategoria(): void {
   }
 }
 
+resumenProductos(){
+  console.log("tu compra incluye:", this.productos);
+  console.log("vas a pagar: ", this.subtotal);
+  this.productService.enviarDatos(this.productos, this.subtotal);
+}
+
 }
