@@ -39,7 +39,7 @@
                     <h3>subtotal({{productosCarri.length}} productos):</h3>
                     <span>${{monto}}</span>
                 </div>
-                <div class="button-pay">
+                <div class="button-pay" *ngIf="productosCarri.length > 0">
                     <button mat-raised-button>Proceder al Pago</button>
                 </div>
             </div>

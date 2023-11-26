@@ -15,21 +15,22 @@
 
 .main-content {
     width: 95%;
-    background-color: red;
+   /* background-color: red;*/
     display: flex;
     float: right;
 }
 
 .main-content .products {
     width: 75%;
-    background-color: green;
+    /*background-color: green;*/
+    border-right: 1px solid #ccc;
 }
 
 .products .your-product {
     display: flex;
     padding-block: 20px;
     border-bottom: 1px solid #ccc;
-    background-color: pink;
+    /*background-color: pink;*/
 }
 
 .your-product .image-product {
@@ -44,25 +45,25 @@
 
 .your-product .info-product {
     width: 80%;
-    background-color: yellow;
+    /*background-color: yellow;*/
     display: flex;
 }
 
 .main-info {
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     width: 90%;
 }
 
 .price {
     width: 10%;
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
 }
 
 .quantity {
     display: flex;
-    background-color: #f4f4f4;
+    /*background-color: #f4f4f4;*/
     width: 15%;
     padding: 5px;
     border-radius: 5px;
@@ -81,7 +82,7 @@
 }
 
 .main-info .buttons {
-    background-color: lightpink;
+    /*background-color: lightpink;*/
     height: 50%;
     display: flex;
     flex-direction: row;
@@ -98,7 +99,7 @@
 }
 
 .totalcompra {
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
     display: flex;
     justify-content: flex-end;
     padding-right: 5%;
@@ -107,6 +108,47 @@
     box-sizing: border-box;
 }
 
+.pay-bar-section {
+    width: 25%;
+    /*background-color: lightblue;*/
+    display: flex;
+    justify-content: center;
+}
+
+.pay-container {
+    /*background-color: yellow;*/
+    width: 80%;
+}
+
+.pay-content {
+    /*background-color: lightcyan;*/
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.button-pay {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.button-pay button {
+    width: 60%;
+    background-color: #F9A640;
+    border-radius: 15px;
+    padding: 5px;
+    border: none;
+    transition: all 300ms ease-in-out;
+}
+
+.button-pay button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
 
 
 
