@@ -1,5 +1,5 @@
 
-<!--Toolbar-->
+<!--Toolbar
 <mat-toolbar>
     <div class="grid_tool">
         <div class="tool_logo">
@@ -16,10 +16,40 @@
                 <a class="txt_ext_link" href="https://olympus.arvispace.com/sucursales/">Sucursales</a></button>
             <button (click)="navegarPagina('sobre-nosotros')" class="btn" mat-raised-button style="background: #FD9727; color: white;">
                 <a class="txt_ext_link" href="https://olympus.arvispace.com/sobre-nosotros">Nosotros</a></button>
-            
             <button (click)="navegarPagina('sucursales')" class="btn" mat-raised-button style="background: #FD9727; color: white;">
                 <p class="txt_btn_footer">¡Registrate!</p></button>
-
         </div>
     </div>
-</mat-toolbar>
+</mat-toolbar>-->
+
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">    
+            <img src="../../../assets/img/logo.jpeg" class="img_logo">
+      <button id="btn_mat" mat-fab class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background: #FD9727; color: white;">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" id="ops" >
+            <a class="nav-link" id="prueba" href="https://olympus.arvispace.com" routerLinkActive="active">Inicio</a>
+          </li>
+          <li class="nav-item" id="ops" >
+            <a class="nav-link" id="prueba" href="#" routerLinkActive="active">Blog</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" id="prueba" href="https://olympus.arvispace.com/espacioCliente/" routerLinkActive="active">Tu espacio</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" id="prueba" href="https://olympus.arvispace.com/sucursales/" routerLinkActive="active">Sucursales</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" id="prueba" href="https://olympus.arvispace.com/sobre-nosotros" routerLinkActive="active">Nosotros</a>
+          </li>
+          <li class="nav-item" id="ops">
+            <a class="nav-link" id="prueba" href="#" routerLinkActive="active">Registrate!!!</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
