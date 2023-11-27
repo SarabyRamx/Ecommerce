@@ -67,8 +67,7 @@ library.add(fab);
     MatIconModule,
     FormsModule,
     MatButtonModule,
-    MatSnackBarModule
-    MatButtonModule,
+    MatSnackBarModule,
     MatChipsModule,
     MatBadgeModule
   ],
