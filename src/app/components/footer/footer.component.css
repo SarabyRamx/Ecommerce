@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /*propiedades footer logo*/
 .logo_f {
     padding-top: 30px;

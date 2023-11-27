@@ -1,4 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  width: 100vw;
+}
+
 .grid_padre {
+    width: 100%;
     display: flex;
   }
 
@@ -15,7 +27,7 @@
   .col-md-9 {
     width: 85%;
     padding: 20px;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
   }
   
   .sidebar {
@@ -42,7 +54,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    border-left: 1px solid #ccc;
   }
 
   .not-found {
@@ -177,11 +188,13 @@
   
 .carlist {
     background-color: #f4f4f4;
-    width: 15%;
+    display: none;
+    max-height: 1085px;
+    overflow-y: scroll;
 }
 
 .product {
-    width: 70%;
+   width: 70%;
 }
 
 .head-car {
@@ -308,3 +321,4 @@
 .seleccionado {
   color: #ffffff;
 }
+

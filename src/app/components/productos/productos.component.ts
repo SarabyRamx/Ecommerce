@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../servicios/producto.service';
 import { CartService } from '../../servicios/cart.service';
 import { Renderer2, ElementRef } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,8 +24,9 @@ export class ProductosComponent implements OnInit {
   filtroSeleccionado: number | null = null;
   categoriaSeleccionada: string = "Todas";
   categoriaFilter: any[] = [];
+  mostrarCarrito: boolean = false;
   
-  constructor(private productService: ProductService, private cartService: CartService, private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private productService: ProductService, private cartService: CartService, private el: ElementRef, private renderer: Renderer2, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
@@ -64,6 +66,14 @@ export class ProductosComponent implements OnInit {
         console.log("respuesta de servicio obtener categorias: ", this.categoriaFilter);
       }
     )  
+
+    const cartData = this.productService.getCartFromLocalStorage();
+    if (cartData) {
+      this.productos = cartData.productos;
+      this.actualizarSubtotal();
+      this.aplicarEstilo = true;
+      this.mostrarCarrito = true;
+    }
   }
 
   agregarAlCarrito(index: number): void {
@@ -95,6 +105,7 @@ export class ProductosComponent implements OnInit {
     }
     this.actualizarSubtotal();
     this.aplicarEstilo = true;
+    this.mostrarCarrito = true;
   }
   
   
@@ -131,7 +142,12 @@ export class ProductosComponent implements OnInit {
   }
 
   openCar(){
-    this.aplicarEstilo = !this.aplicarEstilo;
+    if(this.productos.length > 0){
+      this.aplicarEstilo = !this.aplicarEstilo;
+    } else {
+      this.notificarCarritoVacio();
+    }
+    
   }
 
   closeCar() {
@@ -303,6 +319,14 @@ resumenProductos(){
   console.log("tu compra incluye:", this.productos);
   console.log("vas a pagar: ", this.subtotal);
   this.productService.enviarDatos(this.productos, this.subtotal);
+  this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+}
+
+notificarCarritoVacio() {
+  this.snackBar.open('Tu carrito esta vacio', 'Cerrar', {
+    duration: 2000,
+    panelClass: ['notificacion-carrito-vacio'],
+  });
 }
 
 }

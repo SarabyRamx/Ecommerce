@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   faFacebook,
   faGoogle,
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ResumenproductosComponent } from './components/resumenproductos/resumenproductos.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -45,6 +47,7 @@ library.add(fab);
     AdmindashboardComponent,
     CarritoComponent,
     ResumenproductosComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ library.add(fab);
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
