@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   faFacebook,
   faGoogle,
@@ -33,6 +34,7 @@ import { ResumenproductosComponent } from './components/resumenproductos/resumen
 import { DetallesComponent } from './components/detalles/detalles.component';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -49,6 +51,7 @@ library.add(fab);
     CarritoComponent,
     ResumenproductosComponent,
     DetallesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,8 @@ library.add(fab);
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
+    MatButtonModule,
+    MatSnackBarModule
     MatButtonModule,
     MatChipsModule,
     MatBadgeModule

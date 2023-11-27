@@ -4,8 +4,13 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 .main-container {
-    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .title {
@@ -23,7 +28,7 @@
 .main-content .products {
     width: 75%;
     /*background-color: green;*/
-    border-right: 1px solid #ccc;
+    box-shadow: 3px 3px 15px #ccc;
 }
 
 .products .your-product {

@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="main-container">
     <div class="title">
         <h1 *ngIf="productosCarri.length > 0">Resumen de tus Productos:</h1>
@@ -20,7 +19,7 @@
                 </div>
                 <div class="buttons">
                     <a (click)="eliminarProducto(idx)">Eliminar</a>
-                    <a>Seguir comprando</a>
+                    <a routerLink="/productos">Seguir comprando</a>
                 </div>
                 </div>
                 <div class="price">
@@ -40,11 +39,10 @@
                     <span>${{monto}}</span>
                 </div>
                 <div class="button-pay" *ngIf="productosCarri.length > 0">
-                    <button mat-raised-button>Proceder al Pago</button>
+                    <button mat-raised-button routerLink="/Login">Proceder al Pago</button>
                 </div>
             </div>
             <div class="other-products">
-                
             </div>
         </div>
     </div>
