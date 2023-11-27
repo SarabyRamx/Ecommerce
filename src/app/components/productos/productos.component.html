@@ -50,7 +50,7 @@
             <div class="productos-grid">
               
               <!-- Código de productos -->
-              <div class="producto-card" *ngFor="let product of productosFiltrados let i = index">
+              <div class="producto-card" *ngFor="let product of productosFiltrados let i = index" [routerLink]="['/detalles', product.id]">
                 <p *ngIf="product.descuento == 1" class = "oferta">-{{product.porcentaje}}%</p>
                 <img src="{{urlimg + product.imageurl}}" alt="{{ product.name }} Image">
                 <h3>{{ product.name }}</h3>
