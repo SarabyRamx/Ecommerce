@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { producto } from './datos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private APIUrl = 'http://localhost/Ecommerce/Carrito.php'; 
+  private APIUrl = 'https://olympus.arvispace.com/Products/ecomerce.php'; 
 
   constructor(private http: HttpClient) { }
 
-  addToCart(productId: number, quantity: number): Observable<any> {
-    const requestData = {
-      product_id: productId,
-      q: quantity
-    };
-
-    return this.http.post(this.APIUrl, requestData);
+   //Mostrar datos de usuario componente HOME ----------------------- Roghelio
+   datosArticulo(id: string):Observable<any> {
+    return this.http.get<producto>(this.APIUrl + '?detalles='+id);
   }
+  
 }

@@ -1,0 +1,43 @@
+
+<div class="first-content">
+   
+      <div id="search-bar">
+              <button><span class="material-icons">
+                  search
+                  </span></button>
+              <input type="text" name="search" id="search" placeholder="buscar producto">
+              <div class="icon_content">
+                <mat-icon class="car_icon" matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+             </div>
+      </div>
+        
+    
+  </div>
+
+<div class="container my-5" *ngFor="let data of data_art">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{urlimg + data.imageurl}}" alt="{{ data.name }} Image" alt="producto" style="width: 400px;">
+        </div>
+        <div class="col-md-6">
+            <mat-chip-option class="sal_art" color="warn" selected disabled *ngIf="data.descuento == 1">{{data.porcentaje}}% de descuento</mat-chip-option>
+            <label class="tit_art"> {{data.name}} </label>
+            <label class="cod_art">Código de producto: {{data.id}} </label>
+            <label class="pri_art" *ngIf="data.descuento != 1">$ {{data.price}} </label>
+            <label class="old_pri" *ngIf="data.descuento == 1">$ {{data.price}} </label>
+            <label class="new_pri" *ngIf="data.descuento == 1">$ {{data.nuevoprecio}} </label>
+
+            <label class="qty_art">Unidades</label>
+            <mat-form-field class="cantidad">
+                <mat-label>Unidades</mat-label>
+                <input matInput placeholder="0" type="number">
+              </mat-form-field>
+            
+            <button mat-raised-button class="btn" style="background: #F9A640;">Agregar al carrito</button>
+            <button mat-raised-button class="btn" >Comprar ahora</button>
+        </div>
+    </div>
+    <div class="row">
+        detalles...
+    </div>
+</div>
