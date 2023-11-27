@@ -30,6 +30,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ResumenproductosComponent } from './components/resumenproductos/resumenproductos.component';
+import { DetallesComponent } from './components/detalles/detalles.component';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -45,6 +48,7 @@ library.add(fab);
     AdmindashboardComponent,
     CarritoComponent,
     ResumenproductosComponent,
+    DetallesComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ library.add(fab);
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
