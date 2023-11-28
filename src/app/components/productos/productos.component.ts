@@ -71,7 +71,7 @@ export class ProductosComponent implements OnInit {
     if (cartData) {
       this.productos = cartData.productos;
       this.actualizarSubtotal();
-      this.aplicarEstilo = true;
+      //this.aplicarEstilo = true;
       this.mostrarCarrito = true;
     }
   }
@@ -106,6 +106,8 @@ export class ProductosComponent implements OnInit {
     this.actualizarSubtotal();
     this.aplicarEstilo = true;
     this.mostrarCarrito = true;
+
+    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
   
   
@@ -130,6 +132,7 @@ export class ProductosComponent implements OnInit {
     if(this.productos.length === 0) {
       this.closeCar();
     }
+    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
   actualizarSubtotal(): void {
@@ -139,6 +142,7 @@ export class ProductosComponent implements OnInit {
   vaciarCarrito() {
     this.productos = [];
     this.closeCar();
+    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
   openCar(){
