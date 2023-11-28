@@ -34,10 +34,7 @@
                     </div>
                     
                 </mat-menu>
-        </div>
-
-        
-        
+        </div>    
     </div>
 </div>
 
@@ -100,7 +97,13 @@
 
 
     <div class="row">
-        detalles...
+        <legend>Tambien te podría interesar...</legend>
+        <div class="alert alert-light" role="alert" id="relacionados_content" *ngFor="let dato of datoFiltrado">
+            <img class="relacionados_img" src="{{urlimg + dato.imageurl}}" alt="">
+           <label>{{dato.name}}</label>
+           <label>{{dato.price}}</label>
+           <button mat-raised-button style="background: #F9A640;">Ver</button>
+          </div>
     </div>
 
 </div>
