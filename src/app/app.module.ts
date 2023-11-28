@@ -33,9 +33,9 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { ResumenproductosComponent } from './components/resumenproductos/resumenproductos.component';
 import { DetallesComponent } from './components/detalles/detalles.component';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { LoginComponent } from './components/login/login.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 
 library.add(fab);
@@ -69,7 +69,8 @@ library.add(fab);
     MatButtonModule,
     MatSnackBarModule,
     MatChipsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
