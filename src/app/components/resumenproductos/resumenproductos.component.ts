@@ -41,7 +41,7 @@ export class ResumenproductosComponent implements OnInit {
       )
 
     this.calcularMonto();
-    this.productosRelacion();
+    /*this.productosRelacion();*/
   }
 
   calcularMonto() {
@@ -52,6 +52,7 @@ export class ResumenproductosComponent implements OnInit {
   eliminarProducto(index: number) {
     this.productService.eliminarProducto(index);
     this.calcularMonto();
+    this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
   }
 
   cantidadProducto(event: any, index: number){
@@ -65,7 +66,7 @@ export class ResumenproductosComponent implements OnInit {
     }
   }
 
-  productosRelacion(){
+  /*productosRelacion(){
     this.productosCarri.forEach(element => {
       if(element.id_category == 6){
         this.suple++;
@@ -97,5 +98,5 @@ export class ResumenproductosComponent implements OnInit {
 
     console.log('Categoría con mayor cantidad:', categoriaConMayorCantidad.categoria);
 
-  }
+  }*/
 }
