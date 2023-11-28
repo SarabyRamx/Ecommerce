@@ -15,10 +15,12 @@ export class DetallesComponent implements OnInit {
   id_articulo: string = '';
   data_art: any[] = [];
   productos: any[] = [];
+  relacionados: any [] = [];
   subtotal: number = 0;
   aplicarEstilo: boolean = false;
   mostrarCarrito: boolean = false;
-
+  datoFiltrado: any [] = [];
+  categoria: string ='';
   //Manejar el estado del input
   valorInput: number = 1;
   inputDeshabilitado: boolean = false;
@@ -54,7 +56,6 @@ export class DetallesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     //Capturar el valor que viene de la url
     const x = this.activeRoute.snapshot.paramMap.get('id');
     this.id_articulo = x!.toString();
@@ -62,7 +63,6 @@ export class DetallesComponent implements OnInit {
     //Mandar a traer los datos del articulo selecionado
     this.service.datosArticulo(this.id_articulo).subscribe({
       next: (resultData) => {
-
         //Validar el objeto retornado es un array
         if (Array.isArray(resultData)) {
           this.data_art = resultData;
@@ -73,11 +73,13 @@ export class DetallesComponent implements OnInit {
             }
           });
         }
+        this.categoria = this.data_art[0].id_category;
       }, error: (error) => {
         console.log(error);
       }
     });
 
+    //Obtener los datos almacenados en localStorage
     const cartData = this.productService.getCartFromLocalStorage();
     if (cartData) {
       this.productos = cartData.productos;
@@ -85,8 +87,35 @@ export class DetallesComponent implements OnInit {
       //this.aplicarEstilo = true;
       this.mostrarCarrito = true;
     }
+
+    //Traer los datos para para llenar el apartado articulos relacionados
+    this.productService.getProducts().subscribe({
+      next: (resultData) => {
+        console.log('Datos recibidos:', resultData);
+    
+        if (Array.isArray(resultData)) {
+          console.log('Los datos son un array.');
+          this.relacionados = resultData;
+    
+          this.relacionados.forEach(data => {
+            if ((data.id_category == this.categoria) && (data.id !=  this.id_articulo)) {
+              this.datoFiltrado.push(data);
+            }
+          });
+    
+          console.log('Datos filtrados:', this.datoFiltrado);
+        } else {
+          console.log('Los datos no son un array.');
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener datos:', error);
+      }
+    });
+
   }
 
+  //Actualizar el valor del subtotal
   actualizarSubtotal(): void {
     this.subtotal = this.productos.reduce((total, producto) => total + (producto.cantidad * producto.price), 0);
   }
@@ -202,4 +231,7 @@ export class DetallesComponent implements OnInit {
     }
   }
 
+
+  //Apartado productos relacionados 
+  verProducto(id: string):void {}
 }

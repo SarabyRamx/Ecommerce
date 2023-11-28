@@ -207,3 +207,14 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
+
+/*********************** ARTICULOS RELACIONADOS *********************************************************/
+.relacionados_img {
+    width: 150px;
+}
+
+#relacionados_content {
+    display: inline-block;
+    width: 200px;
+    margin: 0 10px;
+}
