@@ -27,13 +27,12 @@
             <label class="old_pri" *ngIf="data.descuento == 1">$ {{data.price}} </label>
             <label class="new_pri" *ngIf="data.descuento == 1">$ {{data.nuevoprecio}} </label>
 
-            <label class="qty_art">Unidades</label>
             <mat-form-field class="cantidad">
                 <mat-label>Unidades</mat-label>
-                <input matInput placeholder="0" type="number">
+                <input matInput placeholder="0" type="number" #qty>
               </mat-form-field>
             
-            <button mat-raised-button class="btn" style="background: #F9A640;">Agregar al carrito</button>
+            <button mat-raised-button class="btn" style="background: #F9A640;" (click)="agregarAlCarrito(qty.value)">Agregar al carrito</button>
             <button mat-raised-button class="btn" >Comprar ahora</button>
         </div>
     </div>

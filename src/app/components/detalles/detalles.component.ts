@@ -42,4 +42,9 @@ export class DetallesComponent implements OnInit {
     });
   }
 
+  //Agregar item al carrito
+  agregarAlCarrito(qty: string){
+    const x = +qty;
+  }
+
 }
