@@ -5,43 +5,47 @@
             </span></button>
         <input type="text" name="search" id="search" placeholder="buscar producto">
         <div class="icon_content">
-            <mat-icon class="car_icon" matBadge="{{productos.length}}" matBadgeColor="warn"
-                mat-button [matMenuTriggerFor]="beforeMenu">shopping_cart</mat-icon>
-                <mat-menu #beforeMenu="matMenu" xPosition="before">
-                    
-                    <div id="cardlist" class="carlist" *ngIf="productos.length > 0"
-                        [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
-                        <!-- Código del carrito -->
-                        <div class="head-car">
-                            <h2>Tu carrito: {{productos.length}}</h2>
-                            <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
-                        </div>
-                        <div *ngFor="let produ of productos; let i = index" class="produ-car">
-                            <div class="img-produ-car">
-                                <img src="{{urlimg + produ.imageurl}}" alt="">
-                            </div>
-                            <p>Nombre: {{produ.name}}</p>
-                            <p>c/u: ${{produ.price}}</p>
-                            <p *ngIf="produ.descuento == 1">Precio: ${{produ.cantidad * produ.price}}</p>
-                            <p *ngIf="produ.descuento == 0">Precio: ${{produ.cantidad * produ.price}}</p>
-                            <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad"
-                                value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
-                            <button (click)="eliminarProducto(i)">Eliminar</button>
-                        </div>
-                        <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
-                        <button (click)="resumenProductos()" class="vaciar pagarnow" routerLink="/resumen">pagar ahora</button>
-                        <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
+            <mat-icon class="car_icon" matBadge="{{productos.length}}" matBadgeColor="warn" mat-button
+                [matMenuTriggerFor]="beforeMenu">shopping_cart</mat-icon>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <div class="alert alert-light empty_content" role="alert" *ngIf="productos.length == 0">
+                   <label>Ups!!!... Aún no cuentas con artículos en tu carrito.</label>
+                   <fa-icon id="icon_empty" [icon]="['fas', 'heart-crack']"></fa-icon>
+                  </div>
+
+                <div id="cardlist" class="carlist" *ngIf="productos.length > 0"
+                    [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
+                    <!-- Código del carrito -->
+                    <div class="head-car">
+                        <h2>Tu carrito: {{productos.length}}</h2>
+                        <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
                     </div>
-                    
-                </mat-menu>
-        </div>    
+                    <div *ngFor="let produ of productos; let i = index" class="produ-car">
+                        <div class="img-produ-car">
+                            <img src="{{urlimg + produ.imageurl}}" alt="">
+                        </div>
+                        <p>Nombre: {{produ.name}}</p>
+                        <p>c/u: ${{produ.price}}</p>
+                        <p *ngIf="produ.descuento == 1">Precio: ${{produ.cantidad * produ.price}}</p>
+                        <p *ngIf="produ.descuento == 0">Precio: ${{produ.cantidad * produ.price}}</p>
+                        <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad"
+                            value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
+                        <button (click)="eliminarProducto(i)">Eliminar</button>
+                    </div>
+                    <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
+                    <button (click)="resumenProductos()" class="vaciar pagarnow" routerLink="/resumen">pagar
+                        ahora</button>
+                    <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
+                </div>
+            </mat-menu>
+        </div>
     </div>
 </div>
 
 <div class="container my-5" *ngFor="let data of data_art">
     <div class="row">
         <div class="col-md-6">
-            <img src="{{urlimg + data.imageurl}}" alt="{{ data.name }} Image" alt="producto" style="width: 400px;">
+            <img src="{{urlimg + data.imageurl}}" alt="{{ data.name }} Image" style="width: 400px;">
         </div>
         <div class="col-md-6">
             <mat-chip-option class="sal_art" color="warn" selected disabled
@@ -96,14 +100,19 @@
     </div>
 
 
-    <div class="row">
+    <div class="row my-5">
         <legend>Tambien te podría interesar...</legend>
-        <div class="alert alert-light" role="alert" id="relacionados_content" *ngFor="let dato of datoFiltrado">
-            <img class="relacionados_img" src="{{urlimg + dato.imageurl}}" alt="">
-           <label>{{dato.name}}</label>
-           <label>{{dato.price}}</label>
-           <button mat-raised-button style="background: #F9A640;">Ver</button>
-          </div>
+        <div class="d-flex flex-row justify-content-center alig-items-center py-3 ">
+            <div class="alert alert-light" role="alert" id="relacionados_content"
+                *ngFor="let dato of datoFiltrado.slice(0, 4)">
+                <img class="relacionados_img" src="{{urlimg + dato.imageurl}}" alt="{{ dato.name }} Image">
+                <div class="content_title">
+                    <label class="relacionados_title">{{dato.name}}</label>
+                    <label class="relasionados_price">$ {{dato.price}}</label>
+                </div>
+                <button mat-raised-button style="background: #F9A640;" (click)="navegarPagina(dato.id)">Ver</button>
+            </div>
+        </div>
     </div>
 
 </div>
