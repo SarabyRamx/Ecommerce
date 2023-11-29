@@ -111,9 +111,12 @@ body {
     margin-bottom: 5%;
   }
   .center-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /*background-color: lightgreen;*/
+    border-bottom: 1px solid #ccc;
   }
 
   .cart {
@@ -135,13 +138,14 @@ body {
   
 
   #search-bar {
-    width: 100%;
+    width: 95%;
     height: 80px;
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
     display: flex;
     justify-content: end;
     padding-bottom: 70px;
     padding-top: 10px;
+   /* background-color: lightblue;*/
 }
 
 #search-bar button {
@@ -170,6 +174,18 @@ body {
     outline: none;
 }
 
+.icon_content {
+  width: 5%;
+  /*background-color: lightpink;*/
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+
 
 .cantidad-produ {
     height: 100px;
@@ -186,27 +202,36 @@ body {
     height: auto;
 }
   
-.carlist {
+/*.carlist {
     background-color: #f4f4f4;
     display: none;
     max-height: 1085px;
     overflow-y: scroll;
-}
+}*/
 
-.product {
+/*.product {
    width: 70%;
-}
+}*/
 
 .head-car {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
     width: 100%;
+    align-items: center;
+}
+
+.head-car h2 {
+  margin-left: 15px;
 }
 
 .head-car button {
     border: none;
     background-color: #f4f4f4;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .producto-card:hover {
@@ -320,5 +345,24 @@ body {
 
 .seleccionado {
   color: #ffffff;
+}
+
+.car_icon {
+  display: block;
+  border: none;
+  font-size: 30px;
+  color: indigo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mat-menu-panel {
+  position: fixed !important;
+  z-index: 1000;
 }
 
