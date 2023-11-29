@@ -143,6 +143,16 @@
 }
 
 /*****************************************************************************************/
+#icon_empty {
+    font-size: 35px;
+    color: indigo;
+}
+
+.empty_content {
+    margin: 5px;
+    text-align: center;
+    justify-content: center;
+}
 
 .tit_art {
     display: block;
@@ -210,11 +220,33 @@
 
 /*********************** ARTICULOS RELACIONADOS *********************************************************/
 .relacionados_img {
-    width: 150px;
+    
+    height: 200px;
+}
+
+.relacionados_title {
+    display: block;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.relasionados_price {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    text-decoration: underline;
 }
 
 #relacionados_content {
     display: inline-block;
-    width: 200px;
+    width: 250px;
     margin: 0 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.content_title {
+    width: 100%;
+    min-height: 65px;
 }

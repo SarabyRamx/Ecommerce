@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/servicios/cart.service';
 import { ProductService } from 'src/app/servicios/producto.service';
 
@@ -28,7 +28,8 @@ export class DetallesComponent implements OnInit {
   constructor(private service: CartService,
     private activeRoute: ActivatedRoute,
     private productService: ProductService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   //Agregar/sumar +1 a la cantidad del input
   add1() {
@@ -59,9 +60,25 @@ export class DetallesComponent implements OnInit {
     //Capturar el valor que viene de la url
     const x = this.activeRoute.snapshot.paramMap.get('id');
     this.id_articulo = x!.toString();
+    
+    //Mandar a traer los datos del los articulos
+    this.showDataURL(this.id_articulo);
+    this.showDataRelation(this.id_articulo);
+    //Obtener los datos almacenados en localStorage
+    const cartData = this.productService.getCartFromLocalStorage();
+    if (cartData) {
+      this.productos = cartData.productos;
+      this.actualizarSubtotal();
+      //this.aplicarEstilo = true;
+      this.mostrarCarrito = true;
+    }
 
+  }
+
+  //Traer los datos del articulo pasando el parametro que viene de la URL
+  showDataURL(ide: string){
     //Mandar a traer los datos del articulo selecionado
-    this.service.datosArticulo(this.id_articulo).subscribe({
+    this.service.datosArticulo(ide).subscribe({
       next: (resultData) => {
         //Validar el objeto retornado es un array
         if (Array.isArray(resultData)) {
@@ -74,45 +91,40 @@ export class DetallesComponent implements OnInit {
           });
         }
         this.categoria = this.data_art[0].id_category;
+        
       }, error: (error) => {
         console.log(error);
       }
     });
+    
+  }
 
-    //Obtener los datos almacenados en localStorage
-    const cartData = this.productService.getCartFromLocalStorage();
-    if (cartData) {
-      this.productos = cartData.productos;
-      this.actualizarSubtotal();
-      //this.aplicarEstilo = true;
-      this.mostrarCarrito = true;
-    }
-
+  //Traer los datos de articulos relacionados
+  showDataRelation(ide: string){
     //Traer los datos para para llenar el apartado articulos relacionados
     this.productService.getProducts().subscribe({
       next: (resultData) => {
-        console.log('Datos recibidos:', resultData);
+        //console.log('Datos recibidos:', resultData);
     
         if (Array.isArray(resultData)) {
-          console.log('Los datos son un array.');
+         // console.log('Los datos son un array.');
           this.relacionados = resultData;
     
           this.relacionados.forEach(data => {
-            if ((data.id_category == this.categoria) && (data.id !=  this.id_articulo)) {
+            if ((data.id_category == this.categoria) && (data.id != ide)) {
               this.datoFiltrado.push(data);
             }
           });
     
-          console.log('Datos filtrados:', this.datoFiltrado);
+          //console.log('Datos filtrados:', this.datoFiltrado);
         } else {
-          console.log('Los datos no son un array.');
+          //console.log('Los datos no son un array.');
         }
       },
       error: (error) => {
         console.error('Error al obtener datos:', error);
       }
     });
-
   }
 
   //Actualizar el valor del subtotal
@@ -233,5 +245,19 @@ export class DetallesComponent implements OnInit {
 
 
   //Apartado productos relacionados 
-  verProducto(id: string):void {}
+  navegarPagina(url: string): void {
+    //console.log("Va a navegar", url);
+    
+    this.router.navigate([ '/detalles/'+url ]);
+    
+    
+    this.data_art = [];
+    this.productos = [];
+    this.relacionados = [];
+    this.datoFiltrado= [];
+    this.showDataURL(url);
+    this.showDataRelation(url);
+    
+    
+  }
 }
