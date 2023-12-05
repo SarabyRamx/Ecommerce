@@ -28,7 +28,7 @@ html {
 .main-content .products {
     width: 75%;
     /*background-color: green;*/
-    box-shadow: 3px 3px 15px #ccc;
+    box-shadow: 3px 3px 15px #eee;
 }
 
 .products .your-product {
@@ -48,6 +48,18 @@ html {
     height: 100%;
 }
 
+
+.your-product .discount {
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
 .your-product .info-product {
     width: 80%;
     /*background-color: yellow;*/
@@ -59,8 +71,13 @@ html {
     width: 90%;
 }
 
+.main-info .anteriorprice {
+    display: block;
+    color: gray;
+}
+
 .price {
-    width: 10%;
+    width: 15%;
     /*background-color: lightcoral;*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
@@ -94,6 +111,10 @@ html {
     align-items: flex-end;
 }
 
+.claseprueba {
+    height: 40% !important;
+}
+
 .buttons a {
     display: block;
     margin-left: 20px;
@@ -115,22 +136,31 @@ html {
 
 .pay-bar-section {
     width: 25%;
-    /*background-color: lightblue;*/
     display: flex;
     justify-content: center;
+    
 }
 
 .pay-container {
-    /*background-color: yellow;*/
     width: 80%;
 }
 
 .pay-content {
-    /*background-color: lightcyan;*/
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
     font-weight: 500;
+    box-shadow: 3px 3px 15px #eee;
+}
+
+.pay-content p {
+    display: flex;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+.pay-content .code {
+    border-bottom: 1px solid #ccc;
 }
 
 .button-pay {
@@ -139,6 +169,7 @@ html {
     justify-content: center;
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .button-pay button {

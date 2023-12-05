@@ -22,13 +22,14 @@
               <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
             </div>
             <div *ngFor="let produ of productos; let i = index" class="produ-car">
+              <div class="porcentaje" *ngIf="produ.descuento == 1">-{{produ.porcentaje}}</div>
               <div class="img-produ-car">
                 <img src="{{urlimg + produ.imageurl}}" alt="">
               </div>
               <p>Nombre: {{produ.name}}</p>
-              <p>c/u: ${{produ.price}}</p>
-              <p *ngIf="produ.descuento == 1">Precio: ${{produ.cantidad * produ.price}}</p>
-              <p *ngIf="produ.descuento == 0">Precio: ${{produ.cantidad * produ.price}}</p>
+              <p>c/u: ${{produ.preciototal}}</p>
+              <p *ngIf="produ.descuento == 1" class="priceant">Anterior: ${{produ.price}}</p>
+              <p>Precio: ${{produ.cantidad * produ.preciototal}}</p>
               <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad"
                 value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
               <button (click)="eliminarProducto(i)">Eliminar</button>
@@ -86,7 +87,7 @@
                 [routerLink]="['/detalles', product.id]">
               <h3 [routerLink]="['/detalles', product.id]">{{ product.name }}</h3>
               <p *ngIf="product.descuento == 1" class="old_price">anterior: ${{product.price}}</p>
-              <p *ngIf="product.descuento == 1" class="new_price">Precio: ${{product.nuevoprecio}}</p>
+              <p *ngIf="product.descuento == 1" class="new_price">Precio: ${{product.preciototal}}</p>
               <p *ngIf="product.descuento == 0">Precio: ${{ product.price }}</p>
               <button mat-raised-button *ngIf="!product.agregado" class="btn btn-info"
                 (click)="agregarAlCarrito(i)">Agregar al carrito</button>
@@ -94,9 +95,8 @@
           </div>
           <br><br>
         </div>
-        <div id="cardlist" class="carlist" *ngIf="productos.length > 0"
+        <!--<div id="cardlist" class="carlist" *ngIf="productos.length > 0"
           [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
-          <!-- Código del carrito -->
           <div class="head-car">
             <h2>Tu carrito: {{productos.length}}</h2>
             <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
@@ -105,9 +105,8 @@
             <div class="img-produ-car">
               <img src="{{urlimg + produ.imageurl}}" alt="">
             </div>
-            <p>Nombre: {{produ.name}}</p>
-            <p>c/u: ${{produ.price}}</p>
-            <p *ngIf="produ.descuento == 1">Precio: ${{produ.cantidad * produ.price}}</p>
+            <p>Nombre: {{produ.price}}</p>
+          
             <p *ngIf="produ.descuento == 0">Precio: ${{produ.cantidad * produ.price}}</p>
             <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad"
               value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
@@ -116,7 +115,7 @@
           <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
           <button (click)="resumenProductos()" class="vaciar pagarnow" routerLink="/resumen">pagar ahora</button>
           <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 //import { ToastrService } from 'ngx-toastr';
 //import { ConnectionService } from 'src/app/servicios/connection.service';
+import { autenticación } from 'src/app/servicios/autenticacion.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,36 +13,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   hide = true;
-  //form: FormGroup;
+  credentials = { data: '', password: '' };
 
-  constructor (private fb: FormBuilder, 
-    private router: Router){}
+  constructor(private autenticacion: autenticación) { }
 
-  ingresar(){
-    let bodyData = {
-      //data : this.form.value.data,
-      //password : this.form.value.password
-    };
-    console.log(bodyData);
-    //this.toastr.success('Entraste', 'Exíto!!!');
-    /*this.http.credenciales(this.form.value.data, this.form.value.password).subscribe({
-      next: (resultData) =>{
-        console.log(resultData);
-        if(resultData == 1){
-          this.toastr.success('Entraste', 'Exíto!!!');
-        } else {
-          this.toastr.error('Valida la información ingresada.', 'Error!!!');
-        }
+  onSubmit(): void {
+    this.autenticacion.login(this.credentials).subscribe(
+      (response) => {
+        // Autenticación exitosa, guardar el token
+        this.autenticacion.setToken(response.token);
       },
-      error: (error) => {
-        console.error(error);
+      (error) => {
+        // Manejar error de autenticación
       }
-    });*/
-
+    );
   }
 
-  navegarPagina(url: String): void {
-    //console.log("Va a navegar", url);
-    this.router.navigate([ url ]);
-  }
 }

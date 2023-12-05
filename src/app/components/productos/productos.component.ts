@@ -73,6 +73,7 @@ export class ProductosComponent implements OnInit {
       this.actualizarSubtotal();
       //this.aplicarEstilo = true;
       this.mostrarCarrito = true;
+      console.log("los datos del carrito son: ", this.productos);
     }
   }
 
@@ -87,19 +88,21 @@ export class ProductosComponent implements OnInit {
         name: this.productosFiltrados[index].name,
         price: parseFloat(this.productosFiltrados[index].price),
         imageurl: this.productosFiltrados[index].imageurl,
+        descripcion: this.productosFiltrados[index].descripcion,
         id_category: this.productosFiltrados[index].id_category,
         descuento: this.productosFiltrados[index].descuento,
         porcentaje: parseFloat(this.productosFiltrados[index].porcentaje),
+        cantidaddescuento: parseFloat(this.productosFiltrados[index].cantidaddescuento),
+        preciototal: parseFloat(this.productosFiltrados[index].preciototal),
         cantidad: 1,
-        nuevoprecio: 0
       };
   
       // Aplicar descuento solo cuando se crea el producto
-      if (nuevoProducto.descuento === '1') {
+      /*if (nuevoProducto.descuento === '1') {
         nuevoProducto.nuevoprecio = this.calcularPrecioConDescuento(nuevoProducto.price, nuevoProducto.porcentaje);
         nuevoProducto.price = nuevoProducto.nuevoprecio || nuevoProducto.price;
         nuevoProducto.price = parseInt(nuevoProducto.price.toFixed(0));
-      }
+      }*/
       this.productos.push(nuevoProducto);
       console.log("esto es lo que se está enviando al carrito: ", this.productos);
     }
@@ -111,9 +114,9 @@ export class ProductosComponent implements OnInit {
   }
   
   
-  calcularPrecioConDescuento(precioOriginal: number, porcentajeDescuento: number): number {
+  /*calcularPrecioConDescuento(precioOriginal: number, porcentajeDescuento: number): number {
     return precioOriginal - (precioOriginal * porcentajeDescuento / 100);
-  }
+  }*/
   
   
   actualizarCantidad(index: number): void {
@@ -136,7 +139,7 @@ export class ProductosComponent implements OnInit {
   }
 
   actualizarSubtotal(): void {
-    this.subtotal = this.productos.reduce((total, producto) => total + (producto.cantidad * producto.price), 0);
+    this.subtotal = this.productos.reduce((total, producto) => total + (producto.cantidad * producto.preciototal), 0);
   }
 
   vaciarCarrito() {
