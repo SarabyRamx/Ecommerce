@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/servicios/cart.service';
@@ -64,6 +64,7 @@ export class DetallesComponent implements OnInit {
     //Mandar a traer los datos del los articulos
     this.showDataURL(this.id_articulo);
     this.showDataRelation(this.id_articulo);
+    
     //Obtener los datos almacenados en localStorage
     const cartData = this.productService.getCartFromLocalStorage();
     if (cartData) {
@@ -72,6 +73,7 @@ export class DetallesComponent implements OnInit {
       //this.aplicarEstilo = true;
       this.mostrarCarrito = true;
     }
+    console.log(this.productos);
 
   }
 
@@ -140,7 +142,7 @@ export class DetallesComponent implements OnInit {
       this.notificarCarritoVacio(2);
     } else {
 
-    const productoExistente = this.productos.find(p => p.id === this.data_art[0].id);
+    const productoExistente = this.productos.find(p => p.id == this.data_art[0].id);
 
     if (productoExistente) {
       productoExistente.cantidad++;
@@ -247,9 +249,7 @@ export class DetallesComponent implements OnInit {
   //Apartado productos relacionados 
   navegarPagina(url: string): void {
     //console.log("Va a navegar", url);
-    
     this.router.navigate([ '/detalles/'+url ]);
-    
     
     this.data_art = [];
     this.productos = [];
@@ -257,7 +257,27 @@ export class DetallesComponent implements OnInit {
     this.datoFiltrado= [];
     this.showDataURL(url);
     this.showDataRelation(url);
-    
-    
+  }
+
+  //Detectar cuando se navega hacia atras
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: PopStateEvent) {
+    // Aquí puedes mostrar la ventana emergente con el mensaje deseado
+    //if (confirm('¿Seguro que quieres volver?')) {
+      //console.log('estas regresando... ando');
+    //} else {
+     //console.log('no estas regresando... ando');
+    //}
+
+    //Capturar el valor que viene de la url
+    location.reload();
+    const x = this.activeRoute.snapshot.paramMap.get('id');
+    const id_actual = x!.toString();
+    this.data_art = [];
+    this.productos = [];
+    this.relacionados = [];
+    this.datoFiltrado= [];
+    this.showDataURL(id_actual);
+    this.showDataRelation(id_actual);
   }
 }

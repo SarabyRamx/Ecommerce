@@ -36,6 +36,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { LoginComponent } from './components/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { FinalizaCompraComponent } from './components/finaliza-compra/finaliza-compra.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import {MatDividerModule} from '@angular/material/divider';
+import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
 
 
 library.add(fab);
@@ -52,6 +56,8 @@ library.add(fab);
     ResumenproductosComponent,
     DetallesComponent,
     LoginComponent,
+    FinalizaCompraComponent,
+    ReciboCompraComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,9 @@ library.add(fab);
     MatSnackBarModule,
     MatChipsModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxPayPalModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

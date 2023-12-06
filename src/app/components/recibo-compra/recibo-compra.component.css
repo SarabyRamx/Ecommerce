@@ -1,0 +1,16 @@
+/**propiedades body **/
+.body {
+    margin: 0;
+    position: relative;
+    padding-bottom: 139px;
+    min-height: 100vh;
+}
+
+/*porpiedades lista de items*/
+ul {
+    list-style-type: none;
+}
+
+label {
+    display: block;
+}
