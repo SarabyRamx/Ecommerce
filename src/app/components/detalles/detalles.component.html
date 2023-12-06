@@ -75,30 +75,6 @@
         </div>
     </div>
 
-   <!--<div id="cardlist" class="carlist" *ngIf="productos.length > 0"
-        [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
-        <div class="head-car">
-            <h2>Tu carrito: {{productos.length}}</h2>
-            <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
-        </div>
-        <div *ngFor="let produ of productos; let i = index" class="produ-car">
-            <div class="img-produ-car">
-                <img src="{{urlimg + produ.imageurl}}" alt="">
-            </div>
-            <p>Nombre: {{produ.name}}</p>
-            <p>c/u: ${{produ.price}}</p>
-            <p *ngIf="produ.descuento == 1">Precio: ${{produ.cantidad * produ.price}}</p>
-            <p *ngIf="produ.descuento == 0">Precio: ${{produ.cantidad * produ.price}}</p>
-            <input type="number" name="cantidad" id="cantidad" [(ngModel)]="productos[i].cantidad"
-                value="{{productos[i].cantidad}}" (change)="actualizarCantidad(i)">
-            <button (click)="eliminarProducto(i)">Eliminar</button>
-        </div>
-        <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
-        <button (click)="resumenProductos()" class="vaciar pagarnow" routerLink="/resumen">pagar ahora</button>
-        <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
-    </div>-->
-
-
     <div class="row my-5">
         <legend>Tambien te podría interesar...</legend>
         <div class="d-flex flex-row justify-content-center alig-items-center py-3 ">

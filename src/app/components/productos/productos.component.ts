@@ -70,6 +70,7 @@ export class ProductosComponent implements OnInit {
     const cartData = this.productService.getCartFromLocalStorage();
     if (cartData) {
       this.productos = cartData.productos;
+      console.log('Estos son los articulos del ls:' + this.productos);
       this.actualizarSubtotal();
       //this.aplicarEstilo = true;
       this.mostrarCarrito = true;
