@@ -1,4 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/*-----ESTILOS VISTA PRINCIPAL------*/
+
+body {
+  width: 100vw;
+}
+
 .grid_padre {
+    width: 100%;
     display: flex;
   }
 
@@ -15,9 +29,10 @@
   .col-md-9 {
     width: 85%;
     padding: 20px;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
   }
   
+  /*BARRA DE FILTROS*/
   .sidebar {
     width: 100%;
     background-color: #F9A640;
@@ -38,11 +53,12 @@
     padding: 7px;
   }
   
+
+  /*SECCION DE PRODUCTOS*/
   .productos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    border-left: 1px solid #ccc;
   }
 
   .not-found {
@@ -80,7 +96,7 @@
   }
   
   .producto-card {
-    padding: 20px;
+    padding-block: 50px;
     text-align: center;
     border: 1px solid #eee;
     height: 450px;
@@ -88,21 +104,28 @@
   }
   
   .producto-card img {
-    max-width: 100%;
-    height: 50%;
+    width: 60%;
+    height: 70%;
   }
 
   .producto-card h3 {
-    padding-top: 15%;
+    padding-top: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
   }
 
   .producto-card p {
     margin-bottom: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
   }
   .center-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /*background-color: lightgreen;*/
+    border-bottom: 1px solid #ccc;
   }
 
   .cart {
@@ -123,14 +146,16 @@
   }
   
 
+  /*BARRA DE BUSQUEDA*/
   #search-bar {
-    width: 100%;
+    width: 95%;
     height: 80px;
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
     display: flex;
     justify-content: end;
     padding-bottom: 70px;
     padding-top: 10px;
+   /* background-color: lightblue;*/
 }
 
 #search-bar button {
@@ -159,6 +184,19 @@
     outline: none;
 }
 
+/*ICONO CARRITO*/
+.icon_content {
+  width: 5%;
+  /*background-color: lightpink;*/
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+
 
 .cantidad-produ {
     height: 100px;
@@ -175,13 +213,21 @@
     height: auto;
 }
   
-.carlist {
+/*.carlist {
     background-color: #f4f4f4;
-    width: 15%;
-}
+    display: none;
+    max-height: 1085px;
+    overflow-y: scroll;
+}*/
 
-.product {
-    width: 70%;
+/*.product {
+   width: 70%;
+}*/
+
+
+/*ESTILOS CARRITO*/
+.carlist {
+  background-color: #f4f4f4;
 }
 
 .head-car {
@@ -189,11 +235,20 @@
     justify-content: space-between;
     padding-top: 10px;
     width: 100%;
+    align-items: center;
+}
+
+.head-car h2 {
+  margin-left: 15px;
 }
 
 .head-car button {
     border: none;
     background-color: #f4f4f4;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .producto-card:hover {
@@ -211,6 +266,32 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
+}
+
+.produ-car {
+  width: 90%;
+  position: relative !important;
+  text-align: center;
+}
+
+.produ-car .porcentaje {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.produ-car .priceant {
+  text-decoration: line-through rgb(255, 0, 0);
+  text-decoration-thickness: 2px;
+  color: #8b8888;
 }
 
 .producto-card .old_price {
@@ -308,3 +389,23 @@
 .seleccionado {
   color: #ffffff;
 }
+
+.car_icon {
+  display: block;
+  border: none;
+  font-size: 30px;
+  color: indigo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mat-menu-panel {
+  position: fixed !important;
+  z-index: 1000;
+}
+

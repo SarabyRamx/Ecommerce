@@ -1,0 +1,132 @@
+/**propiedades del contenedor body**/
+.body {
+    margin: 0;
+    position: relative;
+    padding-bottom: 139px;
+    min-height: 80vh;
+}
+
+/*propiedades items - carrito de compras */
+.item_img {
+    height: 50px;
+}
+
+.item_title {
+    font-size: medium;
+    margin: 0px 20px;
+    font-weight: bold;
+}
+
+.item_price {
+    font-size: medium;
+    margin: 10px;
+}
+
+.item_qty {
+    font-size: medium;
+    margin: 10px;
+}
+
+/*propiedades mensaje de error pattern input**/
+.txt_msg {
+    font-size: x-small;
+    font-weight: bold;
+}
+
+.inputs_tc_l {
+    width: 300px;
+    padding: 5px 5px;
+    display: inline-block;
+}
+
+/*INICIA PROPIEDADES DETALLES DE PAQUETE**/
+/*propiedades contenedor content grid_hijo2 **/
+.grid_hijo2{
+    margin: 0 auto;
+}
+.content_grid_hijo2 {
+    margin-top: 65px;
+    width: 300px;
+    border: #adbac0 solid;
+    background: #EFEFEF;
+    border-radius: 15px;
+    min-height: 270px;
+}
+
+/**propiedeades titulo details */
+.title_details {
+    font-size: larger;
+    padding-top: 10px;
+    padding-left: 10px;
+    display: block;
+}
+
+/**propiedades subtitle details**/
+.subtitle_details {
+    font-size: medium;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    display: block;
+}
+
+/*propiedades contenedor titulo detalles plan*/
+.header_details {
+    text-align: left;
+    width: 90%;
+}
+
+/**propiedades detalles de compra**/
+.grid_details {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 90%;
+}
+
+/*propiedades textos detalles descripcion*/
+.details_txt_price {
+    font-size: medium;
+    padding-left: 10px;
+    margin: 5px;
+    
+}
+
+/*textos detalles**/
+.details_txt {
+    font-weight: bold;
+    font-size: medium;
+    padding-left: 10px;
+    margin: 5px;
+    display: block;
+}
+
+/*propiedades contenedores de detalles */
+.data_month {
+    text-align: left;
+}
+
+
+
+
+/**CONTENIDO BLOQUE BOTONES CANCELAR - FINALIZAR COMPRA**/
+.btns_ok_cancel {
+    text-align: center;
+}
+
+/**propiedades botones cancelar - finalizar compra **/
+.btn_ok_cancel {
+    width: 290px;
+    font-size: larger;
+    margin: 5px 5px;
+    height: 50px;
+}
+
+input[type="radio"]:checked + label {
+    /* Agrega aquí los estilos para resaltar el radio button seleccionado */
+    /*background-color: #eee;*/
+    font-weight: bold;
+    border-bottom: #FD9727 solid;
+  }
+
+  input[type="radio"] + label{
+    cursor: pointer;
+  }

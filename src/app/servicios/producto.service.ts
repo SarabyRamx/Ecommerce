@@ -11,6 +11,19 @@ export class ProductService {
   productosCart$: Observable<{ productos: any[]; monto: number }> = this.productosCartSubject.asObservable();
 
 
+  public saveCartToLocalStorage(productos: any[], monto: number): void {
+    const cartData = { productos, monto };
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }
+
+  public getCartFromLocalStorage(): { productos: any[]; monto: number } | null {
+    const cartDataString = localStorage.getItem('cartData');
+    if (cartDataString) {
+      return JSON.parse(cartDataString);
+    }
+    return null;
+  }
+
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<any[]> {
