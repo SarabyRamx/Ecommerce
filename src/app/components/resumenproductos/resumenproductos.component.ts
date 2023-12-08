@@ -13,7 +13,7 @@ export class ResumenproductosComponent implements OnInit {
   montoSubtotal: number = 0;
   descuentos: number = 0;
   descuentosDecimales: string = "";
-  imagesUrl = 'https://olympus.arvispace.com/assets/img/prods-img/';
+  imagesUrl = 'https://olympus.arvispace.com/Ecommerce/assets/Products-Images/';
   suple = 0;
   acce = 0;
   alim = 0;
@@ -74,7 +74,7 @@ export class ResumenproductosComponent implements OnInit {
   }
 
   calcularMontoSubtotal() {
-    this.montoSubtotal = this.productosCarri.reduce((total, producto) => total + producto.price * producto.cantidad, 0);
+    this.montoSubtotal = this.productosCarri.reduce((total, producto) => total + producto.preciototal * producto.cantidad, 0);
   }
 
   eliminarProducto(index: number) {

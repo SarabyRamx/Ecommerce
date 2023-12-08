@@ -16,13 +16,13 @@ export class ProductosComponent implements OnInit {
   productData: any[] = [];
   subtotal: number = 0;
   aplicarEstilo: boolean = false;
-  urlimg = "https://olympus.arvispace.com/assets/img/prods-img/";
+  urlimg = "https://olympus.arvispace.com/Ecommerce/assets/Products-Images/";
   searchText: string = '';
   productosFiltrados: any[] = [];
   priceFilterProducts: any[] = [];
   filtersPrice = ["Hasta $350", "$350 a $750", "$750 a $1500", "$1500 a $3000", "$3000 y mas"];
   filtroSeleccionado: number | null = null;
-  categoriaSeleccionada: string = "Todas";
+  categoriaSeleccionada: string = "";
   categoriaFilter: any[] = [];
   mostrarCarrito: boolean = false;
   
@@ -79,18 +79,18 @@ export class ProductosComponent implements OnInit {
   }
 
   agregarAlCarrito(index: number): void {
-    const productoExistente = this.productos.find(p => p.id === this.productosFiltrados[index].id);
+    const productoExistente = this.productos.find(p => p.idProducto === this.productosFiltrados[index].idProducto);
   
     if (productoExistente) {
       productoExistente.cantidad++;
     } else {
       const nuevoProducto = {
-        id: this.productosFiltrados[index].id,
-        name: this.productosFiltrados[index].name,
-        price: parseFloat(this.productosFiltrados[index].price),
+        idProducto: this.productosFiltrados[index].idProducto,
+        nombre: this.productosFiltrados[index].nombre,
+        precio: parseFloat(this.productosFiltrados[index].precio),
         imageurl: this.productosFiltrados[index].imageurl,
         descripcion: this.productosFiltrados[index].descripcion,
-        id_category: this.productosFiltrados[index].id_category,
+        Categoria_idCategoria: this.productosFiltrados[index].Categoria_idCategoria,
         descuento: this.productosFiltrados[index].descuento,
         porcentaje: parseFloat(this.productosFiltrados[index].porcentaje),
         cantidaddescuento: parseFloat(this.productosFiltrados[index].cantidaddescuento),
@@ -163,14 +163,13 @@ export class ProductosComponent implements OnInit {
   }
 
   realizarBusqueda(): void {
-    this.categoriaSeleccionada = "Todas";
     console.log("alguien esta escribiendo");
     const textoBusqueda = this.searchText.toLowerCase();
   
     // Filtra los productos solo si hay texto de búsqueda
     if (textoBusqueda.trim() !== '') {
       this.productosFiltrados = this.productData.filter(producto =>
-        producto.name.toLowerCase().includes(textoBusqueda)
+        producto.nombre.toLowerCase().includes(textoBusqueda)
       );
     } else {
       // Si no hay texto de búsqueda, muestra todos los productos
@@ -205,17 +204,17 @@ export class ProductosComponent implements OnInit {
       } else {
         switch (this.categoriaSeleccionada) {
           case "Suplementos":
-            productosFiltradosCategoria = this.productData.filter(element => parseInt(element.id_category) === 6);
+            productosFiltradosCategoria = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 2);
             break;
           // Agrega más casos según sea necesario
-          case "Ropa y calzado":
-            productosFiltradosCategoria = this.productData.filter(element => parseInt(element.id_category) === 2);
+          case "Galletassss":
+            productosFiltradosCategoria = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 3);
             break;
           case "Accesorios de entrenamiento":
             productosFiltradosCategoria = this.productData.filter(element => parseInt(element.id_category) === 3);
             break;
-          case "Bebidas y alimentos":
-            productosFiltradosCategoria = this.productData.filter(element => parseInt(element.id_category) === 5);
+          case "Bebidas":
+            productosFiltradosCategoria = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 1);
             break;
           case "Descuentos":
             productosFiltradosCategoria = this.productData.filter(element => parseInt(element.descuento) === 1);
@@ -230,15 +229,15 @@ export class ProductosComponent implements OnInit {
       // Filtra los productos según el rango de precio
       if (productosFiltradosCategoria.length > 0) {
         if (selectedFilter === this.filtersPrice[0]) {
-          this.priceFilterProducts = productosFiltradosCategoria.filter(producto => parseInt(producto.price) <= 350);
+          this.priceFilterProducts = productosFiltradosCategoria.filter(producto => parseInt(producto.precio) <= 350);
         } else if (selectedFilter === this.filtersPrice[1]) {
           this.priceFilterProducts = productosFiltradosCategoria.filter(producto => {
-            const precio = parseInt(producto.price);
+            const precio = parseInt(producto.precio);
             return precio >= 350 && precio <= 750;
           });
         } else if (selectedFilter === this.filtersPrice[2]) {
           this.priceFilterProducts = productosFiltradosCategoria.filter(producto => {
-            const precio = parseInt(producto.price);
+            const precio = parseInt(producto.precio);
             return precio >= 750 && precio <= 1500;
           });
         }
@@ -247,17 +246,17 @@ export class ProductosComponent implements OnInit {
       // Si no hay filtro seleccionado, muestra todos los productos de la categoría seleccionada
       switch (this.categoriaSeleccionada) {
         case "Suplementos":
-          this.priceFilterProducts = this.productData.filter(element => parseInt(element.id_category) === 6);
+          this.priceFilterProducts = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 2);
           break;
         // Agrega más casos según sea necesario
-        case "Ropa y calzado":
-          this.priceFilterProducts = this.productData.filter(element => parseInt(element.id_category) === 2);
+        case "Galletassss":
+          this.priceFilterProducts = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 3);
           break;
         case "Accesorios de entrenamiento":
           this.priceFilterProducts = this.productData.filter(element => parseInt(element.id_category) === 3);
           break;
-        case "Bebidas y alimentos":
-          this.priceFilterProducts = this.productData.filter(element => parseInt(element.id_category) === 5);
+        case "Bebidas":
+          this.priceFilterProducts = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 1);
           break;
         case "Descuentos":
           this.priceFilterProducts = this.productData.filter(element => parseInt(element.descuento) === 1);
@@ -302,19 +301,19 @@ aplicarFiltros(): void {
 filtrarPorCategoria(): void {
   switch (this.categoriaSeleccionada) {
     case "Suplementos":
-      this.productosFiltrados = this.productData.filter(element => parseInt(element.id_category) === 6);
+      this.productosFiltrados = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 2);
       break;
-    case "Accesorios de entrenamiento":
+    /*case "Accesorios de entrenamiento":
       this.productosFiltrados = this.productData.filter(element => parseInt(element.id_category) === 3);
+      break;*/
+    /*case "Ropa y calzado":
+      this.productosFiltrados = this.productData.filter(element => parseInt(element.id_category) === 10);
+      break;*/
+    case "Bebidas":
+      this.productosFiltrados = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 1);
       break;
-    case "Ropa y calzado":
-      this.productosFiltrados = this.productData.filter(element => parseInt(element.id_category) === 2);
-      break;
-    case "Bebidas y alimentos":
-      this.productosFiltrados = this.productData.filter(element => parseInt(element.id_category) === 5);
-      break;
-    case "Descuentos":
-      this.productosFiltrados = this.productData.filter(element => parseInt(element.descuento) === 1);
+    case "Galletassss":
+      this.productosFiltrados = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 3);
       break;
     default:
       // Para "Todas" o cualquier otro caso, muestra todos los productos
