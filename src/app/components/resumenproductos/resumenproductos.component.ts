@@ -10,13 +10,20 @@ export class ResumenproductosComponent implements OnInit {
   productosCarri: any[] = [];
   products: any[] = [];
   monto: number = 0;
-  imagesUrl = 'https://olympus.arvispace.com/assets/img/prods-img/';
+  montoSubtotal: number = 0;
+  descuentos: number = 0;
+  descuentosDecimales: string = "";
+  imagesUrl = 'https://olympus.arvispace.com/Ecommerce/assets/Products-Images/';
   suple = 0;
   acce = 0;
   alim = 0;
   ropa = 0;
   productoMayor: any[] = [];
   productosRelacionados: any[] = Array(4);
+  butonstodiscount = {
+    'claseprueba': true
+  };
+  descuentoTotal: any[] = [];
 
   constructor(private productService: ProductService) {}
 
@@ -41,17 +48,41 @@ export class ResumenproductosComponent implements OnInit {
       )
 
     this.calcularMonto();
+    this.calcularMontoSubtotal();
+    this.calcularDescuentoTotal();
     /*this.productosRelacion();*/
   }
 
+  calcularDescuentoTotal() {
+    this.descuentoTotal = this.productosCarri.filter(element => element.descuento == 1);
+    console.log("productos con descuento: ", this.descuentoTotal);
+
+    this.descuentos = 0;
+
+    this.descuentoTotal.forEach(produ => {
+      console.log("cantidad del producto es" ,produ.cantidad);
+        this.descuentos += (produ.cantidad * produ.cantidaddescuento);
+    });
+    this.descuentosDecimales = this.descuentos.toFixed(2)
+    console.log("total de descuentoes es: ", this.descuentosDecimales);
+  }
+  
+
   calcularMonto() {
-    this.monto = this.productosCarri.reduce((total, producto) => total + producto.price * producto.cantidad, 0);
-    console.log("el monto segun calcularMonto es : ", this.monto);
+    this.monto = this.productosCarri.reduce((total, producto) => total + producto.preciototal * producto.cantidad, 0);
+    console.log("el monto segun calcularMonto es : ",this.monto);
+  }
+
+  calcularMontoSubtotal() {
+    this.montoSubtotal = this.productosCarri.reduce((total, producto) => total + producto.preciototal * producto.cantidad, 0);
   }
 
   eliminarProducto(index: number) {
     this.productService.eliminarProducto(index);
+    this.descuentos = 0;
     this.calcularMonto();
+    this.calcularMontoSubtotal();
+    this.calcularDescuentoTotal();
     this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
   }
 
@@ -59,10 +90,13 @@ export class ResumenproductosComponent implements OnInit {
     const nuevaCantidad = parseInt(event.target.value, 10);
     this.productosCarri[index].cantidad = nuevaCantidad;
     this.calcularMonto();
+    this.calcularMontoSubtotal();
+    this.calcularDescuentoTotal();
 
     if(this.productosCarri[index].cantidad == 0){
       this.productosCarri.splice(index, 1);
       this.calcularMonto();
+      this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
     }
   }
 

@@ -5,6 +5,8 @@
   overflow: hidden;
 }
 
+/*-----ESTILOS VISTA PRINCIPAL------*/
+
 body {
   width: 100vw;
 }
@@ -30,6 +32,7 @@ body {
     box-sizing: border-box !important;
   }
   
+  /*BARRA DE FILTROS*/
   .sidebar {
     width: 100%;
     background-color: #F9A640;
@@ -50,6 +53,8 @@ body {
     padding: 7px;
   }
   
+
+  /*SECCION DE PRODUCTOS*/
   .productos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -91,7 +96,7 @@ body {
   }
   
   .producto-card {
-    padding: 20px;
+    padding-block: 50px;
     text-align: center;
     border: 1px solid #eee;
     height: 450px;
@@ -99,16 +104,20 @@ body {
   }
   
   .producto-card img {
-    max-width: 100%;
-    height: 50%;
+    width: 60%;
+    height: 70%;
   }
 
   .producto-card h3 {
-    padding-top: 15%;
+    padding-top: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
   }
 
   .producto-card p {
     margin-bottom: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
   }
   .center-container {
     width: 100%;
@@ -137,6 +146,7 @@ body {
   }
   
 
+  /*BARRA DE BUSQUEDA*/
   #search-bar {
     width: 95%;
     height: 80px;
@@ -174,6 +184,7 @@ body {
     outline: none;
 }
 
+/*ICONO CARRITO*/
 .icon_content {
   width: 5%;
   /*background-color: lightpink;*/
@@ -213,6 +224,12 @@ body {
    width: 70%;
 }*/
 
+
+/*ESTILOS CARRITO*/
+.carlist {
+  background-color: #f4f4f4;
+}
+
 .head-car {
     display: flex;
     justify-content: space-between;
@@ -249,6 +266,32 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: 600;
+}
+
+.produ-car {
+  width: 90%;
+  position: relative !important;
+  text-align: center;
+}
+
+.produ-car .porcentaje {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.produ-car .priceant {
+  text-decoration: line-through rgb(255, 0, 0);
+  text-decoration-thickness: 2px;
+  color: #8b8888;
 }
 
 .producto-card .old_price {

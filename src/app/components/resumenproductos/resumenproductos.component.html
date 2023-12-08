@@ -6,41 +6,47 @@
     <div class="main-content">
         <div class="products">
         <div class="your-product" *ngFor="let producto of productosCarri; let idx = index">
+            <div *ngIf="producto.descuento == 1" class="discount">-{{producto.porcentaje}}</div>
             <div class="image-product">
                 <img src="{{imagesUrl + producto.imageurl}}" alt="" width="100px">
             </div>
             <div class="info-product">
                 <div class="main-info"> 
                 <h2>{{producto.name}}</h2>
-                <span><strong>Precio Unitario:</strong>${{producto.price}}</span>
+                <span><strong>Precio Unitario:</strong>${{producto.preciototal}}</span>
+                <span *ngIf="producto.descuento == 1" class="anteriorprice">Precio anterior: ${{producto.price}}</span>
                 <div class="quantity">
                     <label for="cantidad">cantidad</label>
                     <input type="number" name="cantidad" id="canti" value="{{producto.cantidad}}" (change)="cantidadProducto($event, idx)">
                 </div>
-                <div class="buttons">
+                <div class="buttons" [ngClass]="{'claseprueba': producto.descuento == 1}">
                     <a (click)="eliminarProducto(idx)">Eliminar</a>
                     <a routerLink="/productos">Seguir comprando</a>
                 </div>
                 </div>
                 <div class="price">
-                    <span><strong>${{producto.price * producto.cantidad}}</strong></span>
+                    <span><strong>${{producto.preciototal * producto.cantidad}}</strong></span>
                 </div>
             </div>
-            
         </div>
         <div class="totalcompra">
             <span>Total: ${{monto}}</span>
         </div>
         </div>
         <div class="pay-bar-section">
-            <div class="pay-container">
+            <div class="pay-container"> 
                 <div class="pay-content">
-                    <h3>subtotal({{productosCarri.length}} productos):</h3>
-                    <span>${{monto}}</span>
+                    <h3>Resumen de mi compra:({{productosCarri.length}} productos):</h3>
+                    <p><span>Subtotal:</span> <span>${{montoSubtotal}}</span></p>
+                    <p><span>Descuento:</span><span>${{descuentosDecimales}}</span></p>
+                    <p><span>Costo de envio:</span> <span>$0.00</span></p>
+                    <p class="code"><span>Codigo de promocion:</span> <span>$0.00</span></p>
+                    <p><span>Total:</span><span>${{monto}}MXN</span></p>
+                    <div class="button-pay" *ngIf="productosCarri.length > 0">
+                        <button mat-raised-button routerLink="/Login">Proceder al Pago</button>
+                    </div>
                 </div>
-                <div class="button-pay" *ngIf="productosCarri.length > 0">
-                    <button mat-raised-button routerLink="/Login">Proceder al Pago</button>
-                </div>
+                
             </div>
             <div class="other-products">
             </div>
