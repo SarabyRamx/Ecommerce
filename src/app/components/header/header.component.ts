@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/servicios/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +9,18 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) {
-
-  }
+  router = inject(Router);
+  service = inject(CartService);
 
   navegarPagina(url: String): void {
     console.log("Va a navegar", url);
-
     this.router.navigate([ url ]);
   }
 
+  //Cerrar sesion - eliminar token de local storage
+  logout():void{
+    this.service.logout();
+  }
+
+  
 }

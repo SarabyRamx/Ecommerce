@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },
   { path: 'productos', component: ProductosComponent },
   { path: 'resumen', component: ResumenproductosComponent},
-  { path: 'Login', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
   { path: 'detalles/:id', component: DetallesComponent},
   { path: 'comprar', component: FinalizaCompraComponent, canActivate: [loginGuard] },
   { path: 'acuse/:id', component: ReciboCompraComponent, canActivate: [loginGuard] }
