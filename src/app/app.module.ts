@@ -40,6 +40,7 @@ import { FinalizaCompraComponent } from './components/finaliza-compra/finaliza-c
 import { NgxPayPalModule } from 'ngx-paypal';
 import {MatDividerModule} from '@angular/material/divider';
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 library.add(fab);
@@ -78,7 +79,8 @@ library.add(fab);
     MatBadgeModule,
     MatMenuModule,
     NgxPayPalModule,
-    MatDividerModule
+    MatDividerModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
