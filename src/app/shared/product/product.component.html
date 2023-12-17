@@ -1,0 +1,17 @@
+<article class="product-card" *ngFor="let product of products">
+  <div class="product-image">
+    <img src="{{urlImages + product.imageurl}}" alt="Imagen-producto">
+    <!--<div class="vista-rapida">
+      vista rapida
+    </div>-->
+  </div>
+  <div class="product-info">
+    <p class="product-item product-name">{{product.nombre}}</p>
+    <p class="product-item product-description">{{product.descripcion}}</p>
+    <p class="product-item product-price">${{product.precio}}</p>
+  </div>
+  <div class="add-cart-button">
+    <button mat-raised-button color="primary" (click)="addToCart(product)">Agregar</button>
+  </div>
+  
+</article>

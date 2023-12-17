@@ -78,12 +78,12 @@ export class ResumenproductosComponent implements OnInit {
   }
 
   eliminarProducto(index: number) {
-    this.productService.eliminarProducto(index);
+    //this.productService.eliminarProducto(index);
     this.descuentos = 0;
     this.calcularMonto();
     this.calcularMontoSubtotal();
     this.calcularDescuentoTotal();
-    this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
+    //this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
   }
 
   cantidadProducto(event: any, index: number){
@@ -96,7 +96,7 @@ export class ResumenproductosComponent implements OnInit {
     if(this.productosCarri[index].cantidad == 0){
       this.productosCarri.splice(index, 1);
       this.calcularMonto();
-      this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
+      //this.productService.saveCartToLocalStorage(this.productosCarri, this.monto);
     }
   }
 

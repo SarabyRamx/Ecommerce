@@ -1,0 +1,48 @@
+<div class="productCart-wrapper">
+    <article class="productCart" *ngFor="let product of myCart$ | async">
+        <div class="product-content">
+            <div class="product-img">
+                <img src="{{urlImages + product.imageurl}}" alt="">
+            </div>
+            <div class="product-body">
+                <div class="product-info">
+                    <p class="product-item product-name">{{product.nombre}}</p>
+                    <p class="product-item product-price">${{product.precio}}x{{product.cantidad}}</p>
+                    <!--<p>{{product.cantidad}}</p>-->
+                </div>
+                <div class="total-product">
+                    <p>${{totalProduct(product.precio, product.cantidad)}}</p>
+                </div>
+                <div class="product-buttons">
+                    <div class="productCart-buttons-operators">
+                        <div (click)="updateUnits('minus', product.idProducto)">
+                            <mat-icon>remove</mat-icon>
+                        </div>
+                        <span>{{product.cantidad}}</span>
+                        <div (click)="updateUnits('add', product.idProducto)">
+                            <mat-icon>add</mat-icon>
+                        </div> 
+                    </div>
+                </div>
+                <div class="button-delete">
+                    <button mat-raised-button color="warn" (click)="deleteProduct(product.idProducto)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="total" *ngIf="sizeCart > 0">
+        <p>Subtotal:${{totalCart()}}{{moneda}}</p>
+    </div>
+    <div class="button-cart" *ngIf="sizeCart > 0">
+        <button mat-raised-button color="primary" routerLink="/resumen" >Ir al carrito</button>
+    </div>
+    <div class="no-products" *ngIf="sizeCart == 0">
+        <mat-icon>
+            shopping_cart
+        </mat-icon>
+        <p>Tu carrito esta vacio :C</p>
+    </div>
+</div>
+
+
+
