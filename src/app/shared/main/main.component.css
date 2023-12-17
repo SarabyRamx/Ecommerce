@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+mat-drawer-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+mat-drawer {
+    width: 15%;
+}
+
+mat-drawer-content {
+    width: 85%;
+}
+
+.filters {
+    padding: 20px;
+    min-height: 70vh;
+}
+
+.filters h3 {
+    font-weight: 500;
+}
+
+.filters .precio_range {
+    margin-top: 100px;
+}
+
+.filters select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.filters h2 {
+    margin-bottom: 40px;
+}
+
+.price_filter_container span {
+    display: block;
+    margin-block: 15px;
+}
+
+mat-drawer-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Añade esta línea para ocupar el 100% del contenedor */
+  }
+/* En el componente main (main.component.css) */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0; /* Ajusta el margen superior e inferior según sea necesario */
+  }
+  
+  /* En el componente main (main.component.css) */
+  .product-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+  }
+
+  mat-drawer-container, mat-drawer-content {
+    min-height: 100vh;
+  }
+
+  .product-grid app-product {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  

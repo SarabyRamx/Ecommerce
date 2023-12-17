@@ -67,7 +67,9 @@ export class ProductosComponent implements OnInit {
       }
     )  
 
-    const cartData = this.productService.getCartFromLocalStorage();
+      //this.productService.getCartFromLocalStorage();
+
+    /*const cartData = this.productService.getCartFromLocalStorage();
     if (cartData) {
       this.productos = cartData.productos;
       console.log('Estos son los articulos del ls:' + this.productos);
@@ -75,8 +77,15 @@ export class ProductosComponent implements OnInit {
       //this.aplicarEstilo = true;
       this.mostrarCarrito = true;
       console.log("los datos del carrito son: ", this.productos);
-    }
+    }*/
+
+    const storedCartData = this.productService.getCartFromLocalStorage();
+    if (storedCartData) {
+      this.productService.myList = storedCartData.productos;
+      this.productService.sizeCartSubject.next(this.productService.myList.length);
+      this.productService.myCart.next(this.productService.myList);
   }
+}
 
   agregarAlCarrito(index: number): void {
     const productoExistente = this.productos.find(p => p.idProducto === this.productosFiltrados[index].idProducto);
@@ -111,16 +120,16 @@ export class ProductosComponent implements OnInit {
     this.aplicarEstilo = true;
     this.mostrarCarrito = true;
 
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
   
   
-  /*calcularPrecioConDescuento(precioOriginal: number, porcentajeDescuento: number): number {
+  calcularPrecioConDescuento(precioOriginal: number, porcentajeDescuento: number): number {
     return precioOriginal - (precioOriginal * porcentajeDescuento / 100);
-  }*/
+  }
   
   
-  actualizarCantidad(index: number): void {
+ actualizarCantidad(index: number): void {
     this.actualizarSubtotal();
     if(this.productos[index].cantidad === 0){
       this.productos.splice(index, 1);
@@ -130,13 +139,13 @@ export class ProductosComponent implements OnInit {
     }
   }
 
-  eliminarProducto(index: number): void {
+eliminarProducto(index: number): void {
     this.productos.splice(index, 1);
     this.actualizarSubtotal();
     if(this.productos.length === 0) {
       this.closeCar();
     }
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
   actualizarSubtotal(): void {
@@ -146,22 +155,21 @@ export class ProductosComponent implements OnInit {
   vaciarCarrito() {
     this.productos = [];
     this.closeCar();
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
-  openCar(){
+  /*openCar(){
     if(this.productos.length > 0){
       this.aplicarEstilo = !this.aplicarEstilo;
     } else {
       this.notificarCarritoVacio();
     }
     
-  }
+  }*/
 
   closeCar() {
     this.aplicarEstilo = !this.aplicarEstilo;
   }
-
   realizarBusqueda(): void {
     console.log("alguien esta escribiendo");
     const textoBusqueda = this.searchText.toLowerCase();
@@ -309,7 +317,7 @@ filtrarPorCategoria(): void {
     /*case "Ropa y calzado":
       this.productosFiltrados = this.productData.filter(element => parseInt(element.id_category) === 10);
       break;*/
-    case "Bebidas":
+    /*case "Bebidas":
       this.productosFiltrados = this.productData.filter(element => parseInt(element.Categoria_idCategoria) === 1);
       break;
     case "Galletassss":
@@ -320,20 +328,21 @@ filtrarPorCategoria(): void {
       this.productosFiltrados = this.productData;
       break;
   }
-}
+}*/
 
-resumenProductos(){
+/*resumenProductos(){
   console.log("tu compra incluye:", this.productos);
   console.log("vas a pagar: ", this.subtotal);
   this.productService.enviarDatos(this.productos, this.subtotal);
   this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
-}
+}*/
 
-notificarCarritoVacio() {
+/*notificarCarritoVacio() {
   this.snackBar.open('Tu carrito esta vacio', 'Cerrar', {
     duration: 2000,
     panelClass: ['notificacion-carrito-vacio'],
   });
-}
-
+}*/
+    }
+  }
 }

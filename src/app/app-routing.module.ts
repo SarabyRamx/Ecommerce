@@ -6,6 +6,7 @@ import { DetallesComponent } from './components/detalles/detalles.component';
 import { LoginComponent } from './components/login/login.component';
 import { FinalizaCompraComponent } from './components/finaliza-compra/finaliza-compra.component';
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'resumen', component: ResumenproductosComponent},
   { path: 'detalles/:id', component: DetallesComponent},
   { path: 'comprar', component: FinalizaCompraComponent },
-  { path: 'acuse/:id', component: ReciboCompraComponent }
+  { path: 'acuse/:id', component: ReciboCompraComponent },
+  { path: 'registro', component: RegistroComponent},
   ];
 
 @NgModule({

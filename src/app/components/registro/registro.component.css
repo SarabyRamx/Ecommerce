@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main_container {
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 35%;
+    background-color: #ffffff;
+    padding: 40px;
+    margin-top: 100px;
+    border-radius: 15px;
+    margin-bottom: 100px;
+}
+
+.title_form {
+    padding-block: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.title_form h1 {
+    font-weight: 500;
+}
+
+.registro_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registro_button {
+    background-color: #F9A640 !important;
+    padding: 25px !important;
+}
+
+mat-form-field {
+    margin-bottom: 15px;
+}
+
+  
