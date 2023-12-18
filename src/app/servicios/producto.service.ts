@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, filter } from 'rxjs';
+import { Observable, BehaviorSubject, filter, of } from 'rxjs';
 import { Producto } from '../modelos/product.interface';
 
 @Injectable({
