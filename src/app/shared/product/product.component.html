@@ -1,5 +1,5 @@
 
-<article class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: 10, currentPage: p }">
+<article class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: p }">
   <div class="product-image">
     <img src="{{urlImages + product.imageurl}}" alt="Imagen-producto">
     <!--<div class="vista-rapida">
@@ -15,4 +15,8 @@
     <button mat-raised-button color="primary" (click)="addToCart(product)">Agregar</button>
   </div>
 </article>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<div class="contet_paginator">
+  <pagination-controls previousLabel="Anterior"
+  nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>  
+</div>
