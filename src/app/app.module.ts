@@ -42,6 +42,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
 import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ConfirmarCuentaComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 
 library.add(fab);
 
@@ -59,6 +60,7 @@ library.add(fab);
     LoginComponent,
     FinalizaCompraComponent,
     ReciboCompraComponent,
+    ConfirmarCuentaComponent,
   ],
   imports: [
     BrowserModule,
