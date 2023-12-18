@@ -41,7 +41,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import {MatDividerModule} from '@angular/material/divider';
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 library.add(fab);
 
@@ -80,7 +80,8 @@ library.add(fab);
     MatMenuModule,
     NgxPayPalModule,
     MatDividerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -92,6 +92,7 @@
             </div>
           </div>
           <br><br>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
         <!--<div id="cardlist" class="carlist" *ngIf="productos.length > 0"
           [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
