@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class ProductosComponent implements OnInit {
+  //Manajear la paginacion
+  p: number = 1;
   productos: any[] = [];
   productData: any[] = [];
   subtotal: number = 0;

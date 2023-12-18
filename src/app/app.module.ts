@@ -49,7 +49,7 @@ import { CartComponent } from './shared/cart/cart.component';
 import { MainComponent } from './shared/main/main.component';
 import { ProductComponent } from './shared/product/product.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 library.add(fab);
 
@@ -96,7 +96,8 @@ library.add(fab);
     MatDividerModule,
     MatSidenavModule,
     MatPaginatorModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

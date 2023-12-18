@@ -29,6 +29,7 @@
     "jquery": "^3.7.1",
     "ngx-bootstrap": "^11.0.2",
     "ngx-bootstrap-icons": "^1.9.2",
+    "ngx-pagination": "^6.0.3",
     "ngx-paypal": "^11.0.0",
     "ngx-toastr": "^18.0.0",
     "popper.js": "^1.16.1",
