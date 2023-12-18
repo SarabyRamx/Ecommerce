@@ -9,9 +9,6 @@
           <li class="nav-item" id="ops" >
             <a class="nav-link" id="prueba" href="https://olympus.arvispace.com" routerLinkActive="active">Inicio</a>
           </li>
-          <li class="nav-item" id="ops" >
-            <a class="nav-link" id="prueba" href="#" routerLinkActive="active">Blog</a>
-          </li>
           <li class="nav-item" id="ops">
             <a class="nav-link" id="prueba" href="https://olympus.arvispace.com/espacioCliente/" routerLinkActive="active">Tu espacio</a>
           </li>
@@ -21,8 +18,11 @@
           <li class="nav-item" id="ops">
             <a class="nav-link" id="prueba" href="https://olympus.arvispace.com/sobre-nosotros" routerLinkActive="active">Nosotros</a>
           </li>
-          <li class="nav-item" id="ops">
-            <a class="nav-link" id="prueba" href="#" routerLinkActive="active">Registrate!!!</a>
+          <li class="nav-item" id="ops" *ngIf="!service.isLogged()">
+            <a class="nav-link" id="prueba" href="#" routerLinkActive="active">Entrar</a>
+          </li>
+          <li class="nav-item" id="ops" *ngIf="service.isLogged()">
+            <a class="nav-link" id="prueba" href="#" routerLinkActive="active" (click)="logout()">Salir</a>
           </li>
         </ul>
       </div>

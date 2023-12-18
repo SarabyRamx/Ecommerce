@@ -1,12 +1,6 @@
 /**INICIA PROPIEDADES CONTENIDO DE PAGINA +++++++++++++++++++++++++++++++++++**/
 
-/**propiedades body **/
-.body {
-    margin: 0;
-    position: relative;
-    padding-bottom: 139px;
-    min-height: 100vh;
-}
+
 
 /**propiedades grid padre contenido**/
 .content_grid_padre {
@@ -97,4 +91,29 @@ fa-icon {
 /*propiedades de links resgistrate - olvide contraseña*/
 .txt_link {
     cursor: pointer;
+}
+
+/**contenedor de mensajes de error patrones**/
+.content_msg_pattern {
+    width: 300px;
+    border: #FD9727 solid;
+}
+
+.txt_msg {
+    font-size: x-small;
+    font-weight: bold;
+}
+
+/**Propiedades responsive img derecha**/
+@media (max-width: 800px) {
+	.content_grid_h2 {
+        display: none;
+    }
+
+    .content_grid_padre {
+        display: grid;
+        grid-template-columns: 100% 0%;
+        min-height: 100vh;
+    }
+
 }
