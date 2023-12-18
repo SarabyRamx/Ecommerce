@@ -1,0 +1,46 @@
+<div class="main_container">
+    <div class="content">
+    <div class="title_form">
+        <h1>Registrate</h1>
+    </div>
+    <div class="form_content">
+        <form class="registro_form" [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre y apellido" formControlName="nombre">
+                <mat-error *ngIf="registroForm.get('nombre')?.hasError('pattern') && !registroForm.get('nombre')?.hasError('required')">
+                    <strong class="txt_msg">**Formato no valido, (solo letras)...</strong>
+                  </mat-error>
+                  <mat-error *ngIf="registroForm.get('nombre')?.hasError('required')"><strong class="txt_msg">**Campo requerido</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Correo electronico</mat-label>
+                <input matInput placeholder="Correo electronico" formControlName="correo">
+                <mat-error *ngIf="registroForm.get('correo')?.hasError('pattern') && !registroForm.get('correo')?.hasError('required')">
+                    <strong class="txt_msg">**Formato de correo no valido...</strong>
+                  </mat-error>
+                <mat-error *ngIf="registroForm.get('correo')?.hasError('required')"><strong class="txt_msg">**Campo requerido</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Debe tener al menos 8 caracteres" formControlName="contraseña" type="password">
+                <mat-error *ngIf="registroForm.get('contraseña')?.hasError('minlength') && !registroForm.get('contraseña')?.hasError('required')">
+                    <strong class="txt_msg">**Minimo 8 carácteres...</strong>
+                </mat-error>
+                <mat-error *ngIf="registroForm.get('contraseña')?.hasError('required')"><strong class="txt_msg">**Campo requerido</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Confirmar contraseña</mat-label>
+                <input matInput placeholder="Debe tener al menos 8 caracteres" formControlName="confirmarContraseña" type="password">
+                <mat-error *ngIf="registroForm.get('confirmarContraseña')?.hasError('minlength') && !registroForm.get('confirmarContraseña')?.hasError('required')">
+                    <strong class="txt_msg">**Minimo 8 carácteres...</strong>
+                </mat-error>
+                <mat-error *ngIf="registroForm.get('confirmarContraseña')?.hasError('passwordMismatch')">Las contraseñas no coinciden</mat-error>
+
+                <mat-error *ngIf="registroForm.get('confirmarContraseña')?.hasError('required')"><strong class="txt_msg">**Campo requerido</strong></mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="registro_button" >Continuar</button>
+        </form>
+    </div>
+    </div>
+</div>

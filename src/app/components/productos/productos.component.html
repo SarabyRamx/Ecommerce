@@ -1,7 +1,8 @@
 <div class="body">
 
-  <div class="first-content">
-    <div class="center-container">
+  <app-ecommerce-header></app-ecommerce-header>
+  <!--<div class="first-content">-->
+    <!--<div class="center-container">
       <div id="search-bar">
         <button><span class="material-icons">
             search
@@ -15,7 +16,6 @@
         <mat-menu #beforeMenu="matMenu" xPosition="before">
           <div id="cardlist" class="carlist" *ngIf="productos.length > 0"
             [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
-            <!-- Código del carrito -->
             <div class="head-car">
               <h2>Tu carrito: {{productos.length}}</h2>
               <button (click)="closeCar()"><mat-icon>close</mat-icon></button>
@@ -39,17 +39,20 @@
           </div>
         </mat-menu>
       </div>
-    </div>
-    <div class="cantidad-produ">
+    </div>-->
+    <!--<div class="cantidad-produ">
       <h2>productos encontrados: {{productosFiltrados.length}}</h2>
     </div>
+  </div>-->
+  <div class="products-find">
+    <label>Productos: 20</label>
   </div>
+  <app-main></app-main>
 
-  <div class="content_page">
+  <!--<div class="content_page">
     <div class="margin_page">
       <div class="grid_padre">
         <div class="col-md-3">
-          <!-- Barra lateral con filtros -->
           <div class="sidebar">
             <h3>Filtros</h3>
             <label>Categoría:</label>
@@ -69,7 +72,6 @@
         </div>
 
         <div class="col-md-9 text-center product" [ngClass]="{'product': aplicarEstilo}">
-          <!-- Sección principal de productos -->
           <div class="not-found" *ngIf="productosFiltrados.length == 0">
             <div>
               <img src="assets/img/Product-Not-Found.jpg" alt="">
@@ -78,7 +80,6 @@
           </div>
           <div class="productos-grid">
 
-            <!-- Código de productos -->
             <div class="producto-card" *ngFor="let product of productosFiltrados let i = index">
               <p *ngIf="product.descuento == 1" class="oferta">-{{product.porcentaje}}%</p>
               <img src="{{urlimg + product.imageurl}}" alt="{{ product.name }} Image"
@@ -87,14 +88,14 @@
               <p *ngIf="product.descuento == 1" class="old_price">anterior: ${{product.precio}}</p>
               <p *ngIf="product.descuento == 1" class="new_price">Precio: ${{product.preciototal}}</p>
               <p *ngIf="product.descuento == 0">Precio: ${{ product.preciototal }}</p>
-              <!--<button mat-raised-button *ngIf="!product.agregado" class="btn btn-info"
-                (click)="agregarAlCarrito(i)">Agregar al carrito</button>-->
+              <button mat-raised-button *ngIf="!product.agregado" class="btn btn-info"
+                (click)="agregarAlCarrito(i)">Agregar al carrito</button>
             </div>
           </div>
           <br><br>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
-        <!--<div id="cardlist" class="carlist" *ngIf="productos.length > 0"
+        <div id="cardlist" class="carlist" *ngIf="productos.length > 0"
           [ngStyle]="{'display': mostrarCarrito ? 'block' : 'none'}">
           <div class="head-car">
             <h2>Tu carrito: {{productos.length}}</h2>
@@ -114,8 +115,8 @@
           <h2 class="subtotal">Subtotal: ${{subtotal}}</h2>
           <button (click)="resumenProductos()" class="vaciar pagarnow" routerLink="/resumen">pagar ahora</button>
           <button (click)="vaciarCarrito()" class="vaciar">vaciar carrito</button>
-        </div>-->
+        </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>

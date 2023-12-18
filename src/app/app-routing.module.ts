@@ -6,6 +6,7 @@ import { DetallesComponent } from './components/detalles/detalles.component';
 import { LoginComponent } from './components/login/login.component';
 import { FinalizaCompraComponent } from './components/finaliza-compra/finaliza-compra.component';
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
+import { RegistroComponent } from './components/registro/registro.component';
 import { loginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'resumen', component: ResumenproductosComponent},
   { path: 'login', component: LoginComponent},
   { path: 'detalles/:id', component: DetallesComponent},
+  { path: 'registro', component: RegistroComponent},
   { path: 'comprar', component: FinalizaCompraComponent, canActivate: [loginGuard] },
   { path: 'acuse/:id', component: ReciboCompraComponent, canActivate: [loginGuard] }
   ];

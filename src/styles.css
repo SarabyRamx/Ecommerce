@@ -1,0 +1,15 @@
+/* Cambia el color de fondo del mat-form-field */
+.mat-form-field {
+    background-color: #ffffff;
+  }
+  
+  /* Cambia el color de fondo del input dentro del mat-form-field */
+  .mat-form-field-appearance-fill .mat-form-field-infix {
+    background-color: #ffffff;
+  }
+  
+  /* También puedes cambiar el color del borde si lo deseas */
+  .mat-form-field-appearance-fill .mat-form-field-wrapper {
+    border-color: #ffffff;
+  }
+  

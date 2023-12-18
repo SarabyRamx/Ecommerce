@@ -172,7 +172,7 @@ export class DetallesComponent implements OnInit {
     this.aplicarEstilo = true;
     this.mostrarCarrito = true;
 
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
   }
 
@@ -190,20 +190,20 @@ export class DetallesComponent implements OnInit {
     if (this.productos.length === 0) {
       this.closeCar();
     }
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
   resumenProductos() {
     console.log("tu compra incluye:", this.productos);
     console.log("vas a pagar: ", this.subtotal);
     this.productService.enviarDatos(this.productos, this.subtotal);
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
   vaciarCarrito() {
     this.productos = [];
     this.closeCar();
-    this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
+    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
   }
 
   openCar() {

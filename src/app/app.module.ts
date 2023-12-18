@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule} from '@angular/material/paginator';
 import {
   faFacebook,
   faGoogle,
@@ -40,6 +42,12 @@ import { FinalizaCompraComponent } from './components/finaliza-compra/finaliza-c
 import { NgxPayPalModule } from 'ngx-paypal';
 import {MatDividerModule} from '@angular/material/divider';
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { BusquedaComponent } from './shared/busqueda/busqueda.component';
+import { EcommerceHeaderComponent } from './components/ecommerce-header/ecommerce-header.component';
+import { CartComponent } from './shared/cart/cart.component';
+import { MainComponent } from './shared/main/main.component';
+import { ProductComponent } from './shared/product/product.component';
 import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ConfirmarCuentaComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
@@ -61,6 +69,12 @@ library.add(fab);
     FinalizaCompraComponent,
     ReciboCompraComponent,
     ConfirmarCuentaComponent,
+    RegistroComponent,
+    BusquedaComponent,
+    EcommerceHeaderComponent,
+    CartComponent,
+    MainComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +96,8 @@ library.add(fab);
     MatMenuModule,
     NgxPayPalModule,
     MatDividerModule,
+    MatSidenavModule,
+    MatPaginatorModule,
     ToastrModule.forRoot(),
     NgxPaginationModule
   ],
