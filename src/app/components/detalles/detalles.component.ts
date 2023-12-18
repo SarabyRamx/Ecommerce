@@ -280,4 +280,7 @@ export class DetallesComponent implements OnInit {
     this.showDataURL(id_actual);
     this.showDataRelation(id_actual);
   }
+
+   // TIENDA ********** TIENDA *********** TIENDA ********** TIENDA *********** TIENDA ********** TIENDA
+   
 }
