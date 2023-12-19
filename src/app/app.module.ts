@@ -50,6 +50,7 @@ import { MainComponent } from './shared/main/main.component';
 import { ProductComponent } from './shared/product/product.component';
 import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ConfirmarCuentaComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 
 library.add(fab);
 
@@ -67,6 +68,7 @@ library.add(fab);
     LoginComponent,
     FinalizaCompraComponent,
     ReciboCompraComponent,
+    ConfirmarCuentaComponent,
     RegistroComponent,
     BusquedaComponent,
     EcommerceHeaderComponent,
