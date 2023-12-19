@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, filter } from 'rxjs';
 import { Producto } from '../modelos/product.interface';
+import { Categoria } from '../modelos/categoria.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'https://olympus.arvispace.com/Products/api/api-rest/all_items.php'; 
+  private apiUrl = 'https://olympus.arvispace.com/Products/api/api-rest/all_items.php';
+  private categoryService = 'https://olympus.arvispace.com/Products/api/api-rest/get_categories.php';
   private productosCartSubject: BehaviorSubject<{ productos: any[]; monto: number }> = new BehaviorSubject<{ productos: any[]; monto: number }>({ productos: [], monto: 0 });
   productosCart$: Observable<{ productos: any[]; monto: number }> = this.productosCartSubject.asObservable();
 
@@ -17,6 +19,7 @@ export class ProductService {
   //carrito observable
   public myCart = new BehaviorSubject<Producto[]>([]);
   myCart$ = this.myCart.asObservable();
+  productosList: Producto[] = [];
 
   // Tamaño del carrito observable
   public sizeCartSubject = new BehaviorSubject<number>(0);
@@ -98,9 +101,15 @@ export class ProductService {
   }
 
 
-  getCategories(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?action=getCategories`);
+  getCategories(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(this.categoryService);
   }
+
+  findPerFilter(categoria: number): Producto[] {
+    console.log("esto son todos mis productos: ", this.productosList);
+    return this.productosList.filter((element) => element.Categoria_idCategoria === categoria);
+  }
+  
 
   enviarDatos(productos: any[], monto: number) {
     this.productosCartSubject.next({ productos, monto });
@@ -108,6 +117,10 @@ export class ProductService {
 
   obtenerDatos(): Observable<{ productos: any[]; monto: number }> {
     return this.productosCart$;
+  }
+
+  recibirListaProductos(productos: Producto[]){
+    this.productosList = productos;
   }
 
   eliminarProducto(index: number) {

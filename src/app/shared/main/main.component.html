@@ -3,11 +3,8 @@
         <div class="filters">
             <h2>Filtros</h2>
             <h3>Categoría</h3>
-            <select>
-              <option>Suplementos</option>
-              <option>Bebidas</option>
-              <option>Accesorios</option>
-              <option>Ropa</option>
+            <select (change)="onSelectChange($event)">
+              <option *ngFor="let category of categories">{{category.nombre}}</option>
             </select>
 
             <div class="price_filter_container">

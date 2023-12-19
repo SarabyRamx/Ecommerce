@@ -16,15 +16,21 @@ export class ProductComponent implements OnInit{
 
   ngOnInit(): void {
       this.getProducts();
+      console.log("los elementos de mi variable products es: ", this.products);
   }
 
   getProducts(){
     this.ProductService.getProducts().subscribe((data) => {
-      return this.products = data;
+      this.products = data;
     })
   }
 
   addToCart(product:Producto){
     return this.ProductService.addProduct(product);
+  }
+
+  enviarListaProductos(){
+    console.log("esto es lo que se esta enviando al servicio: ", this.products);
+    this.ProductService.recibirListaProductos(this.products);
   }
 }
