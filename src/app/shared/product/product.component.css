@@ -57,3 +57,12 @@
 .product-card:hover .vista-rapida {
   display: flex;
 }
+
+/*Propiedades pagination*/
+.contet_paginator {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 30px 0px;
+  align-content: center;
+}
