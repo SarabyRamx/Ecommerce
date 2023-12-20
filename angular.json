@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Ecommerce:build:production"
+              "browserTarget": "Ecommerce:build:production"
             },
             "development": {
-              "buildTarget": "Ecommerce:build:development"
+              "browserTarget": "Ecommerce:build:development"
             }
           },
           "defaultConfiguration": "development"
