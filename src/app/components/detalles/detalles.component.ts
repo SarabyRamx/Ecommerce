@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Producto } from 'src/app/modelos/product.interface';
 import { CartService } from 'src/app/servicios/cart.service';
-import { ProductService } from 'src/app/servicios/producto.service';
 
 @Component({
   selector: 'app-detalles',
@@ -11,23 +11,16 @@ import { ProductService } from 'src/app/servicios/producto.service';
 })
 
 export class DetallesComponent implements OnInit {
-  urlimg = "https://olympus.arvispace.com/assets/img/prods-img/";
+  urlimg = "https://olympus.arvispace.com/Ecommerce/assets/Products-Images/";
   id_articulo: string = '';
-  data_art: any[] = [];
-  productos: any[] = [];
-  relacionados: any [] = [];
-  subtotal: number = 0;
-  aplicarEstilo: boolean = false;
-  mostrarCarrito: boolean = false;
-  datoFiltrado: any [] = [];
-  categoria: string ='';
+  productos: Producto[] = [];
+
   //Manejar el estado del input
   valorInput: number = 1;
   inputDeshabilitado: boolean = false;
 
   constructor(private service: CartService,
     private activeRoute: ActivatedRoute,
-    private productService: ProductService,
     private snackBar: MatSnackBar,
     private router: Router) { }
 
@@ -39,7 +32,7 @@ export class DetallesComponent implements OnInit {
 
   //Descontar/restar -1 a la cantidad del input
   less() {
-    if (this.valorInput < 1) {
+    if (this.valorInput <= 1) {
       this.inputDeshabilitado = true;
     } else {
       this.valorInput = this.valorInput - 1;
@@ -63,37 +56,19 @@ export class DetallesComponent implements OnInit {
     
     //Mandar a traer los datos del los articulos
     this.showDataURL(this.id_articulo);
-    this.showDataRelation(this.id_articulo);
-    
-    //Obtener los datos almacenados en localStorage
-    const cartData = this.productService.getCartFromLocalStorage();
-    if (cartData) {
-      this.productos = cartData.productos;
-      this.actualizarSubtotal();
-      //this.aplicarEstilo = true;
-      this.mostrarCarrito = true;
-    }
-    console.log(this.productos);
-
   }
 
   //Traer los datos del articulo pasando el parametro que viene de la URL
   showDataURL(ide: string){
+    let objetoJson = {
+      id: ide
+    };
     //Mandar a traer los datos del articulo selecionado
-    this.service.datosArticulo(ide).subscribe({
+    this.service.getOneProduct(objetoJson).subscribe({
       next: (resultData) => {
-        //Validar el objeto retornado es un array
-        if (Array.isArray(resultData)) {
-          this.data_art = resultData;
-          //Hacer el calculo de los articulos que tienen descuento
-          this.data_art.forEach(element => {
-            if (element.descuento == 1) {
-              element.nuevoprecio = element.price - (element.porcentaje / 100) * element.price;
-            }
-          });
-        }
-        this.categoria = this.data_art[0].id_category;
-        
+       console.log("pero callejero de azotea.........");
+       console.log(resultData);
+       return this.productos = Array.isArray(resultData) ? resultData : [resultData];
       }, error: (error) => {
         console.log(error);
       }
@@ -101,149 +76,7 @@ export class DetallesComponent implements OnInit {
     
   }
 
-  //Traer los datos de articulos relacionados
-  showDataRelation(ide: string){
-    //Traer los datos para para llenar el apartado articulos relacionados
-    this.productService.getProducts().subscribe({
-      next: (resultData) => {
-        //console.log('Datos recibidos:', resultData);
-    
-        if (Array.isArray(resultData)) {
-         // console.log('Los datos son un array.');
-          this.relacionados = resultData;
-    
-          this.relacionados.forEach(data => {
-            if ((data.id_category == this.categoria) && (data.id != ide)) {
-              this.datoFiltrado.push(data);
-            }
-          });
-    
-          //console.log('Datos filtrados:', this.datoFiltrado);
-        } else {
-          //console.log('Los datos no son un array.');
-        }
-      },
-      error: (error) => {
-        console.error('Error al obtener datos:', error);
-      }
-    });
-  }
 
-  //Actualizar el valor del subtotal
-  actualizarSubtotal(): void {
-    this.subtotal = this.productos.reduce((total, producto) => total + (producto.cantidad * producto.price), 0);
-  }
-
-  //Agregar item al carrito
-  agregarAlCarrito(qty: string) {
-    const x = +qty;
-
-    if(x < 1){
-      this.notificarCarritoVacio(2);
-    } else {
-
-    const productoExistente = this.productos.find(p => p.id == this.data_art[0].id);
-
-    if (productoExistente) {
-      productoExistente.cantidad++;
-    } else {
-      const nuevoProducto = {
-        id: this.data_art[0].id,
-        name: this.data_art[0].name,
-        price: parseFloat(this.data_art[0].price),
-        imageurl: this.data_art[0].imageurl,
-        id_category: this.data_art[0].id_category,
-        descuento: this.data_art[0].descuento,
-        porcentaje: parseFloat(this.data_art[0].porcentaje),
-        cantidad: x,
-        nuevoprecio: 0
-      };
-      // Aplicar descuento solo cuando se crea el producto
-      if (nuevoProducto.descuento === '1') {
-        nuevoProducto.nuevoprecio = this.calcularPrecioConDescuento(nuevoProducto.price, nuevoProducto.porcentaje);
-        nuevoProducto.price = nuevoProducto.nuevoprecio || nuevoProducto.price;
-        nuevoProducto.price = parseInt(nuevoProducto.price.toFixed(0));
-      }
-      this.productos.push(nuevoProducto);
-      console.log("esto es lo que se está enviando al carrito: ", this.productos);
-    }
-
-    this.actualizarSubtotal();
-    this.aplicarEstilo = true;
-    this.mostrarCarrito = true;
-
-    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
-  }
-  }
-
-  calcularPrecioConDescuento(precioOriginal: number, porcentajeDescuento: number): number {
-    return precioOriginal - (precioOriginal * porcentajeDescuento / 100);
-  }
-
-  closeCar() {
-    this.aplicarEstilo = !this.aplicarEstilo;
-  }
-
-  eliminarProducto(index: number): void {
-    this.productos.splice(index, 1);
-    this.actualizarSubtotal();
-    if (this.productos.length === 0) {
-      this.closeCar();
-    }
-    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
-  }
-
-  resumenProductos() {
-    console.log("tu compra incluye:", this.productos);
-    console.log("vas a pagar: ", this.subtotal);
-    this.productService.enviarDatos(this.productos, this.subtotal);
-    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
-  }
-
-  vaciarCarrito() {
-    this.productos = [];
-    this.closeCar();
-    //this.productService.saveCartToLocalStorage(this.productos, this.subtotal);
-  }
-
-  openCar() {
-    if (this.productos.length > 0) {
-      this.aplicarEstilo = !this.aplicarEstilo;
-    } else {
-      this.notificarCarritoVacio(1);
-    }
-  }
-
-  notificarCarritoVacio(valida: number) {
-    if(valida == 1){
-      this.snackBar.open('Tu carrito esta vacio', 'Cerrar', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: ['notificacion-carrito-vacio'],
-      });
-    }
-
-    if(valida == 2) {
-      this.snackBar.open('Valor en #articulo invalido', 'Cerrar', {
-        duration: 2000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: ['notificacion-carrito-vacio'],
-      });
-    }
-    
-  }
-
-  actualizarCantidad(index: number): void {
-    this.actualizarSubtotal();
-    if (this.productos[index].cantidad === 0) {
-      this.productos.splice(index, 1);
-    }
-    if (this.productos.length === 0) {
-      this.closeCar();
-    }
-  }
 
 
   //Apartado productos relacionados 
@@ -251,12 +84,7 @@ export class DetallesComponent implements OnInit {
     //console.log("Va a navegar", url);
     this.router.navigate([ '/detalles/'+url ]);
     
-    this.data_art = [];
-    this.productos = [];
-    this.relacionados = [];
-    this.datoFiltrado= [];
-    this.showDataURL(url);
-    this.showDataRelation(url);
+    
   }
 
   //Detectar cuando se navega hacia atras
@@ -273,12 +101,6 @@ export class DetallesComponent implements OnInit {
     location.reload();
     const x = this.activeRoute.snapshot.paramMap.get('id');
     const id_actual = x!.toString();
-    this.data_art = [];
-    this.productos = [];
-    this.relacionados = [];
-    this.datoFiltrado= [];
-    this.showDataURL(id_actual);
-    this.showDataRelation(id_actual);
   }
 
    // TIENDA ********** TIENDA *********** TIENDA ********** TIENDA *********** TIENDA ********** TIENDA

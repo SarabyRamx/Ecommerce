@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { mensaje, producto, token } from './datos';
 import { Router } from '@angular/router';
+import { Producto } from '../modelos/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class CartService {
   private APIUrl = 'https://olympus.arvispace.com/Products/ecomerce.php';
   //Ruta de api base
   private api = 'https://olympus.arvispace.com/Products/api/index.php';
+  //Ruta api Okay
+  private api_ok = 'https://olympus.arvispace.com/Products/api/api-rest/';
   //Manejar la lista de articulos agregados en el carrito de compra
   private myList: producto[] = [];
   //carrito observable
@@ -28,9 +31,9 @@ export class CartService {
     return response
   }
 
-  getOneProduct(id: string): Observable<producto[]> {
+  getOneProduct(id: any): Observable<Producto[]> {
     let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    const response = this.http.post<producto[]>(`${this.api}?oneproduct`, id, { headers });
+    const response = this.http.post<Producto[]>(`${this.api_ok}one_item.php`, id, { headers });
     // console.log(response);
     return response
   }
