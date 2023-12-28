@@ -1,17 +1,17 @@
 <app-ecommerce-header></app-ecommerce-header>
 
 <div class="container my-5">
-    <div class="row" *ngfor="let data of productos">
+    <div class="row">
         <div class="col-md-6">
-           <img src="urlimg+{{data.imageurl}}" alt="" style="width: 400px;">
+           <img src="{{urlimg + productos[0].imageurl}}" alt="{{productos[0].imageurl}}Image" style="width: 400px;">
         </div>
         <div class="col-md-6">
-            <mat-chip-option class="sal_art" color="warn" selected disabled>{{data.porcentaje}} % de descuento</mat-chip-option>
-            <label class="tit_art"> {{data.nombre}} </label>
-            <label class="cod_art">Código de producto: {{data.idProducto}} </label>
-            <label class="pri_art" >$ {{data.precio}} </label>
-            <label class="old_pri" >$ {{data.precio}} </label>
-            <label class="new_pri" >$ {{data.preciototal}}</label>
+            <mat-chip-option class="sal_art" color="warn" selected disabled *ngIf="productos[0].porcentaje == 1">{{productos[0].porcentaje}} % de descuento</mat-chip-option>
+            <label class="tit_art"> {{productos[0].nombre}} </label>
+            <label class="cod_art">Código de producto: {{productos[0].idProducto}} </label>
+            <label class="pri_art" *ngIf="productos[0].porcentaje != 1">$ {{productos[0].precio}} </label>
+            <label class="old_pri" *ngIf="productos[0].porcentaje == 1">$ {{productos[0].precio}} </label>
+            <label class="new_pri" *ngIf="productos[0].porcentaje == 1">$ {{productos[0].preciototal}}</label>
             <div>
                 <button mat-icon-button (click)="less()">
                     <mat-icon>remove</mat-icon>
@@ -26,22 +26,27 @@
                 </button>
             </div>
 
-            <button mat-raised-button class="btn" style="background: #F9A640;"
+            <button mat-raised-button class="btn" style="background: #F9A640;" (click)="addToCart(productos[0], valorInput)"
                 >Agregar al carrito</button>
             <button mat-raised-button class="btn">Comprar ahora</button>
         </div>
     </div>
 
     <div class="row my-5">
-        <legend>Tambien te podría interesar...</legend>
+        <h2>Detalles</h2>
+        <p>{{productos[0].descripcion}}</p>
+    </div>
+
+    <div class="row my-5">
+        <h2>Tambien te podría interesar...</h2>
         <div class="d-flex flex-row justify-content-center alig-items-center py-3 ">
-            <div class="alert alert-light" role="alert" id="relacionados_content">
-               <!-- <img class="relacionados_img" src="urlimg + dato.imageurl" alt="Image">-->
+            <div class="alert alert-light" role="alert" id="relacionados_content" *ngFor="let dato of relacionados.slice(0,4)">
+               <img class="relacionados_img" src="{{urlimg + dato.imageurl}}" alt="Image">
                 <div class="content_title">
-                    <label class="relacionados_title">dato.name</label>
-                    <label class="relasionados_price">$ dato.price</label>
+                    <label class="relacionados_title">{{dato.nombre}}</label>
+                    <label class="relasionados_price">$ {{dato.preciototal}}</label>
                 </div>
-                <button mat-raised-button style="background: #F9A640;" (click)="navegarPagina('23')">Ver</button>
+                <button mat-raised-button style="background: #F9A640;" (click)="navegarPagina(dato.idProducto)">Ver</button>
             </div>
         </div>
     </div>

@@ -27,8 +27,8 @@ export class ProductService {
   }
 
   public saveCartToLocalStorage(): void {
-    const cartData = { productos: this.myList, monto: this.totalCart() };
-    localStorage.setItem('cartData', JSON.stringify(cartData));
+      const cartData = { productos: this.myList, monto: this.totalCart() };
+      localStorage.setItem('cartData', JSON.stringify(cartData));    
   }
 
   public getCartFromLocalStorage(): { productos: any[]; monto: number } | null {
@@ -48,10 +48,10 @@ export class ProductService {
     return response;
   }
 
-  addProduct(product:Producto){
-
+  addProduct(product:Producto, items: number){
+    const qty = +items;
     if(this.myList.length == 0){
-      product.cantidad = 1;
+      product.cantidad = qty;
       this.myList.push(product)
       this.myCart.next(this.myList);
     }else {
@@ -59,10 +59,10 @@ export class ProductService {
         return element.idProducto === product.idProducto;
       })
       if(productMod){
-        productMod.cantidad = productMod.cantidad + 1;
+        productMod.cantidad = productMod.cantidad + qty;
         this.myCart.next(this.myList);
       } else {
-        product.cantidad = 1;
+        product.cantidad = qty;
         this.myList.push(product);
         this.myCart.next(this.myList);
       }

@@ -74,7 +74,7 @@ library.add(fab);
     EcommerceHeaderComponent,
     CartComponent,
     MainComponent,
-    ProductComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
