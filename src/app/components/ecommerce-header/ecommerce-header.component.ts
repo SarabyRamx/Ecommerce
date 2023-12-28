@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 import { CartService } from 'src/app/servicios/cart.service';
 import { ProductService } from 'src/app/servicios/producto.service';
@@ -11,24 +12,34 @@ import { ProductService } from 'src/app/servicios/producto.service';
 })
 export class EcommerceHeaderComponent implements OnInit, AfterViewInit {
   search = new FormControl('');
-  sizeCart:number = 0;
-  viewCart:boolean = false;
+  sizeCart: number = 0;
+  viewCart: boolean = false;
   @ViewChild('inputSearch')
-  searchInput? : ElementRef;
+  searchInput?: ElementRef;
 
-  constructor(private ProductService: ProductService, private service: CartService){}
+  constructor(private ProductService: ProductService,
+    private service: CartService, private route: ActivatedRoute,
+    private router: Router) { }
 
   ngAfterViewInit(): void {
-     fromEvent<any>(this.searchInput?.nativeElement, 'keyup')
-    .pipe(
-      map(keyEvent => keyEvent.target.value),
-      debounceTime(400),
-      distinctUntilChanged()
-    ).subscribe( text => this.service.emitText(text));
+    fromEvent<any>(this.searchInput?.nativeElement, 'keyup')
+      .pipe(
+        map(keyEvent => keyEvent.target.value),
+        debounceTime(400),
+        distinctUntilChanged()
+      ).subscribe(text => this.service.emitText(text));
   }
 
   ngOnInit(): void {
-    console.log('Estoy en la barra de busqueda...');
+    // Obtén la URL actual
+    const currentUrl = this.router.url;
+    console.log('URL actual:', currentUrl);
+
+    // También puedes obtener información más detallada sobre la ruta activa
+    this.route.url.subscribe(segments => {
+      console.log('Segmentos de la URL:', segments);
+    });
+
     // Suscribirse a cambios
     this.service.textObservable.subscribe();
 
@@ -37,7 +48,7 @@ export class EcommerceHeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onToggleCart(){
+  onToggleCart() {
     this.viewCart = !this.viewCart;
   }
 }
