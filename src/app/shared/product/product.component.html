@@ -16,7 +16,16 @@
   </div>
 </article>
 
-<div class="contet_paginator">
+<!--CONTENIDO ALTERNATIVO CUANDO NO SE ENCUENTRAN ARTICULOS-->
+<article *ngIf="products.length === 0">
+  <div class="alert alert-light content_not_results" role="alert">
+    <label class="text_not_results">No hay resultados para tu búsqueda.</label>
+    <fa-icon class="icon_not_results" [icon]="['fas', 'heart-broken']"></fa-icon>
+  </div>
+</article>
+
+<!--PAGINADOR-->
+<div class="contet_paginator" *ngIf="products.length !== 0">
   <pagination-controls previousLabel="Anterior"
   nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>  
 </div>

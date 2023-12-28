@@ -19,9 +19,7 @@ export class ProductComponent implements OnInit {
   urlImages = "https://olympus.arvispace.com/Ecommerce/assets/Products-Images/";
   // Manejar el contenido de los items retornados por el servicio
   products: Producto[] = [];
-  // Manejar la respuesta retornada de la busqueda
-  response: Producto[] = [];
-
+  
   constructor(private ProductService: ProductService, private serviceSearchInput: CartService) { }
 
   ngOnInit(): void {
@@ -66,4 +64,5 @@ export class ProductComponent implements OnInit {
       }, error: (error) => console.log(error)
     });
   }
+
 }
