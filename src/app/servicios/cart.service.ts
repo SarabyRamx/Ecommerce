@@ -3,41 +3,60 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { mensaje, producto, token } from './datos';
 import { Router } from '@angular/router';
+import { Producto } from '../modelos/product.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  //Ruta de pruebas
-  private APIUrl = 'https://olympus.arvispace.com/Products/ecomerce.php';
+  // Buscador ok -> https://www.youtube.com/watch?v=ENsaGFxuynQ
+  // Buscador -> https://www.youtube.com/watch?v=dbTXDyT5s0M
   //Ruta de api base
   private api = 'https://olympus.arvispace.com/Products/api/index.php';
-  //Manejar la lista de articulos agregados en el carrito de compra
-  private myList: producto[] = [];
-  //carrito observable
-  private myCart = new BehaviorSubject<producto[]>([]);
-  myCart$ = this.myCart.asObservable();
+  //Ruta api Okay
+  private api_ok = 'https://olympus.arvispace.com/Products/api/api-rest/';
+  // Declarar variables - manejo de la barra de busqueda
+  private textSubject: BehaviorSubject<string>
+  public textObservable: Observable<string>
+  
+  constructor(private http: HttpClient, private router: Router) {
+    // Inicializar variables
+    this.textSubject = new BehaviorSubject<string>('');
+    this.textObservable = this.textSubject.asObservable();
+   }
+  // MANEJAR BARRA DE BUSQUEDA ************* MANEJAR BARRA DE BUSQUEDA *************** MANEJAR BARRA DE
+  //Emitir el contenido que se teclea en el input BARRA DE BUSQUEDA
+  emitText(characters: string){
+    //Emitir los caracteres tecleados
+    this.textSubject.next(characters);
+  }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  resultSearchBar(characters: any): Observable<Producto[]>{
+    let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const response = this.http.post<Producto[]>(`${this.api_ok}search_char.php`, characters, { headers });
+    return response;
+  }
 
   // TIENDA ********** TIENDA *********** TIENDA ********** TIENDA *********** TIENDA ********** TIENDA
-
+  
   getAllProducts(): Observable<producto[]> {
     const response = this.http.get<producto[]>(`${this.api}?allproducts`);
     // console.log(response);
     return response
   }
 
-  getOneProduct(id: string): Observable<producto[]> {
+  //Traer articulos por id - componente detalles
+  getOneProduct(id: any): Observable<Producto[]> {
     let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    const response = this.http.post<producto[]>(`${this.api}?oneproduct`, id, { headers });
-    // console.log(response);
+    const response = this.http.post<Producto[]>(`${this.api_ok}one_item.php`, id, { headers });
     return response
   }
 
-  //Mostrar datos de usuario componente HOME ----------------------- Roghelio
-  datosArticulo(id: string): Observable<any> {
-    return this.http.get<producto>(this.APIUrl + '?detalles=' + id);
+  //Traer articulos relacionados pasando como parametro un ide por referencia
+  getRelationItems(id: any): Observable<Producto[]> {
+    let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const response = this.http.post<Producto[]>(`${this.api_ok}relation_items.php`, id, { headers });
+    return response
   }
 
   // SESION *********** SESION ********** SESION *********** SESION ********** SESION ********** SESION
@@ -110,7 +129,11 @@ export class CartService {
   }
 
   // PRUEBAS ******** PRUEBAS ********* PRUEBAS ********** PRUEBAS ********** PRUEBAS ********* PRUEBAS
-  pruebas():Observable<any>{
-    return this.http.get(this.APIUrl + '?prueba');
+  private urlartduino = '192.168.100.37';
+  // PRUEBAS ARDUINO 
+  prueba(data: any):Observable<any> {
+    let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const response = this.http.post(`${this.urlartduino}`, data, {headers});
+    return response
   }
 }
