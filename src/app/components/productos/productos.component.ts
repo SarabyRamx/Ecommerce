@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class ProductosComponent implements OnInit {
   //Manajear la paginacion
-  p: number = 1;
+  //p: number = 1;
   productos: any[] = [];
   productData: any[] = [];
   subtotal: number = 0;
@@ -27,11 +27,18 @@ export class ProductosComponent implements OnInit {
   categoriaSeleccionada: string = "";
   categoriaFilter: any[] = [];
   mostrarCarrito: boolean = false;
+  sizeFiltrados: number = 0;
   
   constructor(private productService: ProductService, private cartService: CartService, private el: ElementRef, private renderer: Renderer2, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
+
+    this.productService.sizeListProducts.subscribe((size) => {
+        this.sizeFiltrados = size;
+        console.log("El tamaño del los filtrados son: ", this.sizeFiltrados);
+      
+    });
+    /*this.productService.getProducts().subscribe(
       (respuesta) => {
         console.log("Respuesta completa:", respuesta);
   
@@ -60,7 +67,7 @@ export class ProductosComponent implements OnInit {
       (error) => {
         console.error("Error al obtener productos:", error);
       }
-    );
+    );*/
 
     this.productService.getCategories().subscribe(
       (respuesta) => {

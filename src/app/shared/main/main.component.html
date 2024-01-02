@@ -3,22 +3,20 @@
         <div class="filters">
             <h2>Filtros</h2>
             <h3>Categoría</h3>
-            <select>
-              <option>Suplementos</option>
-              <option>Bebidas</option>
-              <option>Accesorios</option>
-              <option>Ropa</option>
+            <select (change)="onSelectChange($event)">
+              <option value="">Selecciona una categoria</option>
+              <option *ngFor="let category of categories">{{category.nombre}}</option>
             </select>
 
             <div class="price_filter_container">
                 <h3 class="precio_range">
                   Precio
                 </h3>
-                <span>Hasta $350</span>
-                <span>$350 a $750</span>
-                <span>$750 a $1500</span>
-                <span>$1500 a $3000</span>
-                <span>$3000 y mas</span>
+                <mat-radio-group [(ngModel)]="selectedOption" (change)="onOptionChange()">
+                  <mat-radio-button *ngFor="let prices of preciosFilter; let first = first" [value]="prices.nombre">
+                    {{prices.nombre}}
+                  </mat-radio-button>
+                </mat-radio-group>
             </div>
         </div>
     </mat-drawer>

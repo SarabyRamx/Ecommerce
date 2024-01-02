@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
+
 import {
   faFacebook,
   faGoogle,
@@ -99,7 +101,8 @@ library.add(fab);
     MatSidenavModule,
     MatPaginatorModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

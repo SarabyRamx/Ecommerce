@@ -13,6 +13,7 @@ import { text } from '@fortawesome/fontawesome-svg-core';
 export class ProductComponent implements OnInit {
   //Manejar la paginacion
   p: number = 1;
+
   // Manejar la data ingresada en la barra de busqueda
   text: string = '';
   // Ruta donde se almancenan la imagenes
@@ -20,19 +21,22 @@ export class ProductComponent implements OnInit {
   // Manejar el contenido de los items retornados por el servicio
   products: Producto[] = [];
   
-  constructor(private ProductService: ProductService, private serviceSearchInput: CartService) { }
-
-  ngOnInit(): void {
-    this.getProducts();
-    this.serviceSearchInput.textObservable.subscribe(resultData => {
-      this.filter(resultData);
+  filtrados: Producto[] = [];
+  
+  categoria: number = 0;
+  
+  constructor(private ProductService: ProductService, private serviceSearchInput: CartService) { 
+    this.ProductService.productosList$.subscribe((productos) => {
+      console.log('Productos filtrados actualizados:', productos);
+      this.filtrados = productos;
     });
   }
 
-  // Traer todos los productos
-  getProducts() {
-    this.ProductService.getProducts().subscribe((data) => {
-      return this.products = data;
+  ngOnInit(): void {
+    this.getProducts();
+    this.obtenerFiltrados();
+    this.serviceSearchInput.textObservable.subscribe(resultData => {
+      this.filter(resultData);
     });
   }
 
@@ -51,6 +55,26 @@ export class ProductComponent implements OnInit {
       console.log('traer datos de inicio por que ya quitaste los datos tecleados...');
     }
   }
+  
+  getProducts() {
+    this.ProductService.getProducts().subscribe((data) => {
+      console.log('Esto es lo que retorna...', data);
+
+      // Ahora, puedes asignar los datos a tu variable
+      this.products = data;
+
+      console.log("entonces products es: ",this.products);
+
+      if (this.products.length > 0) {
+        console.log('Los elementos de mi variable products son:', this.products);
+        this.enviarListaProductos();
+        //this.obtenerFiltrados();
+      } else {
+        console.log('No se está llenando mi variable products');
+      }
+    });
+  }
+
 
   // Servicio se encarga de mandar el parametro introducido en la barra de busqueda
   searchText(text: string) {
@@ -65,4 +89,20 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  enviarListaProductos(){
+    console.log("esto es lo que se esta enviando al servicio: ", this.products);
+    this.ProductService.recibirListaProductos(this.products);
+  }
+
+  obtenerFiltrados() {
+    this.ProductService.obtenerFiltrados().subscribe((filtrados) => {
+      if (filtrados) {
+        this.p = 1;
+        console.log("ESTO ES LO QUE YO AGARRO DE SERVICIO POR MAIN ", filtrados);
+        this.filtrados = filtrados;
+      } else {
+        console.log("No se pudieron obtener productos filtrados");
+      }
+    });
+  }
 }
