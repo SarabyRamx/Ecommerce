@@ -8,6 +8,7 @@ import { FinalizaCompraComponent } from './components/finaliza-compra/finaliza-c
 import { ReciboCompraComponent } from './components/recibo-compra/recibo-compra.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { loginGuard } from './guards/login.guard';
+import { ConfirmarCuentaComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'detalles/:id', component: DetallesComponent},
   { path: 'registro', component: RegistroComponent},
+  { path: 'confirmar', component: ConfirmarCuentaComponent },
   { path: 'comprar', component: FinalizaCompraComponent, canActivate: [loginGuard] },
   { path: 'acuse/:id', component: ReciboCompraComponent, canActivate: [loginGuard] }
   ];

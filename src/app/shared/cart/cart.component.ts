@@ -20,7 +20,6 @@ export class CartComponent implements OnInit{
     this.ProductService.sizeCart$.subscribe((size) => {
       this.sizeCart = size;
     });
-
     this.ProductService.getCartFromLocalStorage();
   }
 

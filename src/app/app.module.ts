@@ -25,7 +25,7 @@ import {
   faTwitter,
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import {  faHeartBroken } from '@fortawesome/free-solid-svg-icons';
+import {  faHeartBroken, faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -76,7 +76,7 @@ library.add(fab);
     EcommerceHeaderComponent,
     CartComponent,
     MainComponent,
-    ProductComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +116,8 @@ export class AppModule {
       faTwitter,
       faPaypal,
       faXTwitter,
-      faHeartBroken
+      faHeartBroken,
+      faXmarkCircle
     );
   }
 }
