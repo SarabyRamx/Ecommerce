@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
+
 import {
   faFacebook,
   faGoogle,
@@ -50,6 +52,7 @@ import { MainComponent } from './shared/main/main.component';
 import { ProductComponent } from './shared/product/product.component';
 import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ConfirmarCuentaComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 
 library.add(fab);
 
@@ -67,6 +70,7 @@ library.add(fab);
     LoginComponent,
     FinalizaCompraComponent,
     ReciboCompraComponent,
+    ConfirmarCuentaComponent,
     RegistroComponent,
     BusquedaComponent,
     EcommerceHeaderComponent,
@@ -97,7 +101,8 @@ library.add(fab);
     MatSidenavModule,
     MatPaginatorModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
