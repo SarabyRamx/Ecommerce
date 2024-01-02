@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from 'src/app/modelos/product.interface';
 import { ProductService } from 'src/app/servicios/producto.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { ProductService } from 'src/app/servicios/producto.service';
   styleUrls: ['./resumenproductos.component.css']
 })
 export class ResumenproductosComponent implements OnInit {
+  carritoData: {productos: Producto[]; monto: number} | null = null;
   productosCarri: any[] = [];
   products: any[] = [];
   monto: number = 0;
@@ -28,7 +30,10 @@ export class ResumenproductosComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.productosCart$.subscribe(
+
+    this.carritoData = this.productService.getCartFromLocalStorage();
+    console.log("DATOS DEL CARRITO: ", this.carritoData);
+    /*this.productService.productosCart$.subscribe(
       (datos) => {
         this.productosCarri = datos.productos;
         //this.monto = datos.monto;
@@ -38,19 +43,24 @@ export class ResumenproductosComponent implements OnInit {
       (error: any) => {
         console.error('Error al obtener datos del carrito:', error);
       }
-    );
+    );*/
 
-      this.productService.getProducts().subscribe(
+     /* this.productService.getProducts().subscribe(
         (respuesta) => {
           this.products = respuesta;
           console.log("la respuesta de los productos es: ", this.products);
         }
-      )
+      )*/
 
     this.calcularMonto();
     this.calcularMontoSubtotal();
     this.calcularDescuentoTotal();
     /*this.productosRelacion();*/
+  }
+
+  deleteProduct(id:number){
+    this.productService.deleteProduct(id);
+    this.productService.getCartFromLocalStorage();
   }
 
   calcularDescuentoTotal() {

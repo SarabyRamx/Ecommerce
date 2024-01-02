@@ -1,5 +1,6 @@
 
-<article class="product-card" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: p }">
+<article class="product-card" *ngFor="let product of filtrados | paginate: { itemsPerPage: 9, currentPage: p }">
+  <a routerLink="/detalles/{{product.idProducto}}">
   <div class="product-image">
     <img src="{{urlImages + product.imageurl}}" alt="Imagen-producto">
     <!--<div class="vista-rapida">
@@ -11,6 +12,7 @@
     <p class="product-item product-description">{{product.descripcion}}</p>
     <p class="product-item product-price">${{product.precio}}</p>
   </div>
+</a>
   <div class="add-cart-button">
     <button mat-raised-button color="primary" (click)="addToCart(product)">Agregar</button>
   </div>

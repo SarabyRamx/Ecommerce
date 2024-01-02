@@ -1,26 +1,26 @@
 <div class="main-container">
     <div class="title">
-        <h1 *ngIf="productosCarri.length > 0">Resumen de tus Productos:</h1>
-        <h1 *ngIf="productosCarri.length == 0">Tu carrito esta vacio :C</h1>
+        <h1 *ngIf="carritoData && carritoData.productos.length > 0">Resumen de tus Productos:</h1>
+        <h1 *ngIf="carritoData && carritoData.productos.length === 0">Tu carrito esta vacio :C</h1>
     </div>
     <div class="main-content">
         <div class="products">
-        <div class="your-product" *ngFor="let producto of productosCarri; let idx = index">
-            <div *ngIf="producto.descuento == 1" class="discount">-{{producto.porcentaje}}</div>
+        <div class="your-product" *ngFor="let producto of carritoData?.productos; let idx = index">
+            <div *ngIf="producto.descuento == true" class="discount">-{{producto.porcentaje}}</div>
             <div class="image-product">
                 <img src="{{imagesUrl + producto.imageurl}}" alt="" width="100px">
             </div>
             <div class="info-product">
                 <div class="main-info"> 
-                <h2>{{producto.name}}</h2>
+                <h2>{{producto.nombre}}</h2>
                 <span><strong>Precio Unitario:</strong>${{producto.preciototal}}</span>
-                <span *ngIf="producto.descuento == 1" class="anteriorprice">Precio anterior: ${{producto.price}}</span>
+                <span class="anteriorprice" *ngIf="producto.descuento == true">Precio anterior: ${{producto.preciototal}}</span>
                 <div class="quantity">
                     <label for="cantidad">cantidad</label>
                     <input type="number" name="cantidad" id="canti" value="{{producto.cantidad}}" (change)="cantidadProducto($event, idx)">
                 </div>
-                <div class="buttons" [ngClass]="{'claseprueba': producto.descuento == 1}">
-                    <a (click)="eliminarProducto(idx)">Eliminar</a>
+                <div class="buttons" [ngClass]="{'claseprueba': producto.descuento == false}">
+                    <a (click)="deleteProduct(producto.idProducto)">Eliminar</a>
                     <a routerLink="/productos">Seguir comprando</a>
                 </div>
                 </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="totalcompra">
-            <span>Total: ${{monto}}</span>
+            <span>Total: ${{carritoData?.monto}}</span>
         </div>
         </div>
         <div class="pay-bar-section">
